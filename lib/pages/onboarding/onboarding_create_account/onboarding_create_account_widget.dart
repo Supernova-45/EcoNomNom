@@ -405,7 +405,7 @@ class _OnboardingCreateAccountWidgetState
 
                         logFirebaseEvent('Button_navigate_to');
 
-                        context.goNamedAuth('Dashboard', context.mounted);
+                        context.goNamedAuth('UploadImage', context.mounted);
                       },
                       text: 'Create Account',
                       options: FFButtonOptions(

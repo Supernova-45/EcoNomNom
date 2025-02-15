@@ -1,11 +1,9 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:math';
 import 'dart:ui';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -18,10 +16,10 @@ export 'meal_card_model.dart';
 class MealCardWidget extends StatefulWidget {
   const MealCardWidget({
     super.key,
-    this.mealRef,
+    required this.product,
   });
 
-  final MealsRecord? mealRef;
+  final ProductRecord? product;
 
   @override
   State<MealCardWidget> createState() => _MealCardWidgetState();
@@ -85,13 +83,17 @@ class _MealCardWidgetState extends State<MealCardWidget>
         context.pushNamed(
           'MealDetails',
           pathParameters: {
-            'mealRef': serializeParam(
-              widget!.mealRef,
+            'productInfo': serializeParam(
+              widget!.product,
               ParamType.Document,
             ),
           }.withoutNulls,
           extra: <String, dynamic>{
-            'mealRef': widget!.mealRef,
+            'productInfo': widget!.product,
+            kTransitionInfoKey: TransitionInfo(
+              hasTransition: true,
+              transitionType: PageTransitionType.bottomToTop,
+            ),
           },
         );
       },
@@ -113,50 +115,18 @@ class _MealCardWidgetState extends State<MealCardWidget>
               context.pushNamed(
                 'MealDetails',
                 pathParameters: {
-                  'mealRef': serializeParam(
-                    widget!.mealRef,
+                  'productInfo': serializeParam(
+                    widget!.product,
                     ParamType.Document,
                   ),
                 }.withoutNulls,
                 extra: <String, dynamic>{
-                  'mealRef': widget!.mealRef,
+                  'productInfo': widget!.product,
                 },
               );
             },
             onDoubleTap: () async {
               logFirebaseEvent('MEAL_CARD_Container_xsjr6r56_ON_DOUBLE_T');
-              if (widget!.mealRef!.mealFavorites
-                  .contains(currentUserReference)) {
-                logFirebaseEvent('Container_haptic_feedback');
-                HapticFeedback.lightImpact();
-                logFirebaseEvent('Container_backend_call');
-
-                await widget!.mealRef!.reference.update({
-                  ...mapToFirestore(
-                    {
-                      'meal_favorites':
-                          FieldValue.arrayRemove([currentUserReference]),
-                    },
-                  ),
-                });
-              } else {
-                logFirebaseEvent('Container_haptic_feedback');
-                HapticFeedback.selectionClick();
-                logFirebaseEvent('Container_wait__delay');
-                await Future.delayed(const Duration(milliseconds: 100));
-                logFirebaseEvent('Container_haptic_feedback');
-                HapticFeedback.lightImpact();
-                logFirebaseEvent('Container_backend_call');
-
-                await widget!.mealRef!.reference.update({
-                  ...mapToFirestore(
-                    {
-                      'meal_favorites':
-                          FieldValue.arrayUnion([currentUserReference]),
-                    },
-                  ),
-                });
-              }
             },
             child: Container(
               width: MediaQuery.sizeOf(context).width * 0.48,
@@ -167,8 +137,8 @@ class _MealCardWidgetState extends State<MealCardWidget>
                   fit: BoxFit.cover,
                   image: Image.network(
                     valueOrDefault<String>(
-                      widget!.mealRef?.mealImage,
-                      'https://cdn-uploads.mealime.com/uploads/recipe/thumbnail/225/presentation_62aa6b6f-6a95-4798-9091-09f487ad2dc4.jpg',
+                      widget!.product?.image,
+                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM1bjLuveRZ6g0nUu_L_XeaMdK3oiyDk_HwA&s',
                     ),
                   ).image,
                 ),
@@ -189,38 +159,6 @@ class _MealCardWidgetState extends State<MealCardWidget>
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       logFirebaseEvent('MEAL_CARD_COMP_Stack_83960l4l_ON_TAP');
-                      if (widget!.mealRef!.mealFavorites
-                          .contains(currentUserReference)) {
-                        logFirebaseEvent('Stack_haptic_feedback');
-                        HapticFeedback.lightImpact();
-                        logFirebaseEvent('Stack_backend_call');
-
-                        await widget!.mealRef!.reference.update({
-                          ...mapToFirestore(
-                            {
-                              'meal_favorites': FieldValue.arrayRemove(
-                                  [currentUserReference]),
-                            },
-                          ),
-                        });
-                      } else {
-                        logFirebaseEvent('Stack_haptic_feedback');
-                        HapticFeedback.selectionClick();
-                        logFirebaseEvent('Stack_wait__delay');
-                        await Future.delayed(const Duration(milliseconds: 100));
-                        logFirebaseEvent('Stack_haptic_feedback');
-                        HapticFeedback.lightImpact();
-                        logFirebaseEvent('Stack_backend_call');
-
-                        await widget!.mealRef!.reference.update({
-                          ...mapToFirestore(
-                            {
-                              'meal_favorites':
-                                  FieldValue.arrayUnion([currentUserReference]),
-                            },
-                          ),
-                        });
-                      }
                     },
                     child: Container(
                       width: 32.0,
@@ -235,18 +173,15 @@ class _MealCardWidgetState extends State<MealCardWidget>
                               size: 32.0,
                             ),
                           ),
-                          if (widget!.mealRef?.mealFavorites
-                                  ?.contains(currentUserReference) ??
-                              true)
-                            Align(
-                              alignment: AlignmentDirectional(1.0, -1.0),
-                              child: Icon(
-                                Icons.favorite_rounded,
-                                color: Color(0xFFFF4E59),
-                                size: 32.0,
-                              ).animateOnPageLoad(
-                                  animationsMap['iconOnPageLoadAnimation']!),
-                            ),
+                          Align(
+                            alignment: AlignmentDirectional(1.0, -1.0),
+                            child: Icon(
+                              Icons.favorite_rounded,
+                              color: Color(0xFFFF4E59),
+                              size: 32.0,
+                            ).animateOnPageLoad(
+                                animationsMap['iconOnPageLoadAnimation']!),
+                          ),
                         ],
                       ),
                     ),
@@ -258,7 +193,10 @@ class _MealCardWidgetState extends State<MealCardWidget>
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
             child: Text(
-              widget!.mealRef!.mealName.maybeHandleOverflow(
+              valueOrDefault<String>(
+                widget!.product?.name,
+                '[Unknown]',
+              ).maybeHandleOverflow(
                 maxChars: 36,
                 replacement: '…',
               ),
@@ -269,42 +207,40 @@ class _MealCardWidgetState extends State<MealCardWidget>
                   ),
             ),
           ),
-          if (widget!.mealRef!.mealDiet.length > 0)
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).accent1,
-                  borderRadius: BorderRadius.circular(24.0),
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 6.0, 8.0, 6.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
-                        child: AuthUserStreamWidget(
-                          builder: (context) => Text(
-                            valueOrDefault(currentUserDocument?.diet, ''),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Inter',
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  fontSize: 10.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
-                                  lineHeight: 1.0,
-                                ),
-                          ),
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).accent1,
+                borderRadius: BorderRadius.circular(24.0),
+              ),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(8.0, 6.0, 8.0, 6.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional(0.0, 0.0),
+                      child: Text(
+                        valueOrDefault<String>(
+                          widget!.product?.sustainabilityScore?.toString(),
+                          '10',
                         ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Inter',
+                              color: FlutterFlowTheme.of(context).primary,
+                              fontSize: 10.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w500,
+                              lineHeight: 1.0,
+                            ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
+          ),
         ],
       ),
     );

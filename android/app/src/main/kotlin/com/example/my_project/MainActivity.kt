@@ -1,4 +1,4 @@
-package com.mealplanner.app
+package com.economnom.app
 
 import io.flutter.embedding.android.FlutterActivity
 

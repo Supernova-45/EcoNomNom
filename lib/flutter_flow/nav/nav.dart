@@ -121,14 +121,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'MealDetails',
-              path: 'meal/:mealRef',
+              path: 'meal/:productInfo',
               requireAuth: true,
               asyncParams: {
-                'mealRef': getDoc(['meals'], MealsRecord.fromSnapshot),
+                'productInfo': getDoc(['product'], ProductRecord.fromSnapshot),
               },
               builder: (context, params) => MealDetailsWidget(
-                mealRef: params.getParam(
-                  'mealRef',
+                productInfo: params.getParam(
+                  'productInfo',
                   ParamType.Document,
                 ),
               ),

@@ -13,10 +13,10 @@ export 'meal_bottom_sheet_model.dart';
 class MealBottomSheetWidget extends StatefulWidget {
   const MealBottomSheetWidget({
     super.key,
-    this.mealRef,
+    this.productInfo,
   });
 
-  final MealsRecord? mealRef;
+  final ProductRecord? productInfo;
 
   @override
   State<MealBottomSheetWidget> createState() => _MealBottomSheetWidgetState();
@@ -95,7 +95,13 @@ class _MealBottomSheetWidgetState extends State<MealBottomSheetWidget> {
                                   'MEAL_BOTTOM_SHEET_ShareMealTile_ON_TAP');
                               logFirebaseEvent('ShareMealTile_share');
                               await Share.share(
-                                'Check out this amazing recipe for ${widget!.mealRef?.mealName}! Here are the ingredients: ${widget!.mealRef?.mealIngredients}',
+                                'Check out this amazing recipe for ${valueOrDefault<String>(
+                                  widget!.productInfo?.name,
+                                  '[product]',
+                                )}! Here are the ingredients: ${valueOrDefault<String>(
+                                  widget!.productInfo?.description,
+                                  '[description]',
+                                )}',
                                 sharePositionOrigin:
                                     getWidgetBoundingBox(context),
                               );
@@ -173,7 +179,10 @@ class _MealBottomSheetWidgetState extends State<MealBottomSheetWidget> {
                                 return Padding(
                                   padding: MediaQuery.viewInsetsOf(context),
                                   child: FeedbackBottomSheetWidget(
-                                    mealName: widget!.mealRef?.mealName,
+                                    mealName: valueOrDefault<String>(
+                                      widget!.productInfo?.name,
+                                      '[product name]',
+                                    ),
                                   ),
                                 );
                               },

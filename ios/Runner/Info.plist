@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>MealPlanner</string>
+	<string>EcoNomNom</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -28,7 +28,7 @@
             <string>Editor</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>com.googleusercontent.apps.921473207936-jh1jrn09qai5fvfqi410fhiiaa89dtqd</string>
+                <string>com.googleusercontent.apps.448443669057-ia43emlo0r1vr2fopi5iimndghst2hts</string>
                 
             </array>
         </dict>

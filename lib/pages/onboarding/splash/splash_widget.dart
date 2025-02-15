@@ -82,7 +82,7 @@ class _SplashWidgetState extends State<SplashWidget> {
                           text: TextSpan(
                             children: [
                               TextSpan(
-                                text: 'Meal',
+                                text: 'Eco',
                                 style: FlutterFlowTheme.of(context)
                                     .displaySmall
                                     .override(
@@ -91,7 +91,7 @@ class _SplashWidgetState extends State<SplashWidget> {
                                     ),
                               ),
                               TextSpan(
-                                text: 'Planner',
+                                text: 'NomNom',
                                 style: FlutterFlowTheme.of(context)
                                     .displaySmall
                                     .override(

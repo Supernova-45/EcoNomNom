@@ -18,10 +18,10 @@
   },
   "scripts": {
     "lint": "./node_modules/.bin/eslint --max-warnings=0 .",
-    "serve": "firebase -P meal-planner-3841f emulators:start --only functions",
-    "shell": "firebase -P meal-planner-3841f functions:shell",
+    "serve": "firebase -P eco-nom-nom-puznn8 emulators:start --only functions",
+    "shell": "firebase -P eco-nom-nom-puznn8 functions:shell",
     "start": "npm run shell",
-    "logs": "firebase -P meal-planner-3841f functions:log",
+    "logs": "firebase -P eco-nom-nom-puznn8 functions:log",
     "compile": "cp ../../tsconfig.template.json ./tsconfig-compile.json && tsc --project tsconfig-compile.json"
   },
   "engines": {

@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/empty_state/empty_state_widget.dart';
 import '/components/meal_card/meal_card_widget.dart';
@@ -15,9 +14,18 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class DashboardModel extends FlutterFlowModel<DashboardWidget> {
-  @override
-  void initState(BuildContext context) {}
+  ///  State fields for stateful widgets in this page.
+
+  // Models for mealCard dynamic component.
+  late FlutterFlowDynamicModels<MealCardModel> mealCardModels;
 
   @override
-  void dispose() {}
+  void initState(BuildContext context) {
+    mealCardModels = FlutterFlowDynamicModels(() => MealCardModel());
+  }
+
+  @override
+  void dispose() {
+    mealCardModels.dispose();
+  }
 }

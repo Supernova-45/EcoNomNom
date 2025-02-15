@@ -196,6 +196,14 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
                                         width: 95.0,
                                         height: 200.0,
                                         fit: BoxFit.fitHeight,
+                                        errorBuilder:
+                                            (context, error, stackTrace) =>
+                                                Image.asset(
+                                          'assets/images/error_image.webp',
+                                          width: 95.0,
+                                          height: 200.0,
+                                          fit: BoxFit.fitHeight,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -323,6 +331,9 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
                             image: _model.uploadedFileUrl,
                             name: _model.textController.text,
                           ));
+                      logFirebaseEvent('Button_navigate_to');
+
+                      context.pushNamed('Dashboard');
                     },
                     text: 'Submit',
                     options: FFButtonOptions(

@@ -56,15 +56,15 @@ class ProductRecord extends FirestoreRecord {
   double get salePrice => _salePrice ?? 0.0;
   bool hasSalePrice() => _salePrice != null;
 
-  // "quantity" field.
-  int? _quantity;
-  int get quantity => _quantity ?? 0;
-  bool hasQuantity() => _quantity != null;
-
   // "image" field.
   String? _image;
   String get image => _image ?? '';
   bool hasImage() => _image != null;
+
+  // "sustainability_score" field.
+  double? _sustainabilityScore;
+  double get sustainabilityScore => _sustainabilityScore ?? 0.0;
+  bool hasSustainabilityScore() => _sustainabilityScore != null;
 
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
@@ -75,8 +75,9 @@ class ProductRecord extends FirestoreRecord {
     _modifiedAt = snapshotData['modified_at'] as DateTime?;
     _onSale = snapshotData['on_sale'] as bool?;
     _salePrice = castToType<double>(snapshotData['sale_price']);
-    _quantity = castToType<int>(snapshotData['quantity']);
     _image = snapshotData['image'] as String?;
+    _sustainabilityScore =
+        castToType<double>(snapshotData['sustainability_score']);
   }
 
   static CollectionReference get collection =>
@@ -122,8 +123,8 @@ Map<String, dynamic> createProductRecordData({
   DateTime? modifiedAt,
   bool? onSale,
   double? salePrice,
-  int? quantity,
   String? image,
+  double? sustainabilityScore,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -135,8 +136,8 @@ Map<String, dynamic> createProductRecordData({
       'modified_at': modifiedAt,
       'on_sale': onSale,
       'sale_price': salePrice,
-      'quantity': quantity,
       'image': image,
+      'sustainability_score': sustainabilityScore,
     }.withoutNulls,
   );
 
@@ -156,8 +157,8 @@ class ProductRecordDocumentEquality implements Equality<ProductRecord> {
         e1?.modifiedAt == e2?.modifiedAt &&
         e1?.onSale == e2?.onSale &&
         e1?.salePrice == e2?.salePrice &&
-        e1?.quantity == e2?.quantity &&
-        e1?.image == e2?.image;
+        e1?.image == e2?.image &&
+        e1?.sustainabilityScore == e2?.sustainabilityScore;
   }
 
   @override
@@ -170,8 +171,8 @@ class ProductRecordDocumentEquality implements Equality<ProductRecord> {
         e?.modifiedAt,
         e?.onSale,
         e?.salePrice,
-        e?.quantity,
-        e?.image
+        e?.image,
+        e?.sustainabilityScore
       ]);
 
   @override
