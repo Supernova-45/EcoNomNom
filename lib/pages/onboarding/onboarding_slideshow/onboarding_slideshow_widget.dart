@@ -156,64 +156,6 @@ class _OnboardingSlideshowWidgetState extends State<OnboardingSlideshowWidget>
           ),
         ],
       ),
-      'textOnPageLoadAnimation5': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          ScaleEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(0.9, 0.9),
-            end: Offset(1.0, 1.0),
-          ),
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-      'imageOnPageLoadAnimation3': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          ScaleEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(0.9, 0.9),
-            end: Offset(1.0, 1.0),
-          ),
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-      'textOnPageLoadAnimation6': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          VisibilityEffect(duration: 1.ms),
-          ScaleEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(0.9, 0.9),
-            end: Offset(1.0, 1.0),
-          ),
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -235,7 +177,7 @@ class _OnboardingSlideshowWidgetState extends State<OnboardingSlideshowWidget>
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).background,
         body: SafeArea(
           top: true,
           child: Column(
@@ -284,14 +226,16 @@ class _OnboardingSlideshowWidgetState extends State<OnboardingSlideshowWidget>
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 32.0),
                                             child: Text(
-                                              'Local, Customized\nMeal Planning',
+                                              'Identify Key Insights\ninto Your Food',
                                               textAlign: TextAlign.center,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .displaySmall
                                                       .override(
-                                                        fontFamily: 'Inter',
+                                                        fontFamily: 'Ubuntu',
                                                         letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       ),
                                             ).animateOnPageLoad(animationsMap[
                                                 'textOnPageLoadAnimation1']!),
@@ -312,13 +256,13 @@ class _OnboardingSlideshowWidgetState extends State<OnboardingSlideshowWidget>
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 48.0, 0.0, 0.0),
                                             child: Text(
-                                              'Create your own customized meal plan from our selection of healthy meal options.',
+                                              'Compare sustainability data between different product options, at your fingertips',
                                               textAlign: TextAlign.center,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .labelLarge
                                                       .override(
-                                                        fontFamily: 'Inter',
+                                                        fontFamily: 'Ubuntu',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ).animateOnPageLoad(animationsMap[
@@ -336,14 +280,16 @@ class _OnboardingSlideshowWidgetState extends State<OnboardingSlideshowWidget>
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 32.0),
                                             child: Text(
-                                              'Delicious and Nutritious Fresh Meals',
+                                              'Snap Your Products!',
                                               textAlign: TextAlign.center,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .displaySmall
                                                       .override(
-                                                        fontFamily: 'Inter',
+                                                        fontFamily: 'Ubuntu',
                                                         letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       ),
                                             ).animateOnPageLoad(animationsMap[
                                                 'textOnPageLoadAnimation3']!),
@@ -352,10 +298,20 @@ class _OnboardingSlideshowWidgetState extends State<OnboardingSlideshowWidget>
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
-                                            child: Image.network(
-                                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/meal-planner-3nia1o/assets/og5l0duupnzv/Chef_Cooking.png',
-                                              height: 250.0,
-                                              fit: BoxFit.contain,
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(40.0),
+                                                bottomRight:
+                                                    Radius.circular(40.0),
+                                                topLeft: Radius.circular(40.0),
+                                                topRight: Radius.circular(40.0),
+                                              ),
+                                              child: Image.asset(
+                                                'assets/images/snack_capture.webp',
+                                                height: 250.0,
+                                                fit: BoxFit.contain,
+                                              ),
                                             ).animateOnPageLoad(animationsMap[
                                                 'imageOnPageLoadAnimation2']!),
                                           ),
@@ -364,69 +320,17 @@ class _OnboardingSlideshowWidgetState extends State<OnboardingSlideshowWidget>
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 48.0, 0.0, 0.0),
                                             child: Text(
-                                              'Enjoy healthy and delicious meals delivered to your doorstep, prepared with fresh, high-quality ingredients.',
+                                              'On the next page, upload a photo of the grocery shelf in front of you and make an informed choice before buying!',
                                               textAlign: TextAlign.center,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .labelLarge
                                                       .override(
-                                                        fontFamily: 'Inter',
+                                                        fontFamily: 'Ubuntu',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ).animateOnPageLoad(animationsMap[
                                                 'textOnPageLoadAnimation4']!),
-                                          ),
-                                        ],
-                                      ),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 32.0),
-                                            child: Text(
-                                              'Gourmet Quality,\nHassle-Free',
-                                              textAlign: TextAlign.center,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .displaySmall
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ).animateOnPageLoad(animationsMap[
-                                                'textOnPageLoadAnimation5']!),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 0.0, 24.0, 0.0),
-                                            child: Image.network(
-                                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/meal-planner-3nia1o/assets/jevo7qiwpcte/Customers_Enjoy_Food.png',
-                                              height: 250.0,
-                                              fit: BoxFit.contain,
-                                            ).animateOnPageLoad(animationsMap[
-                                                'imageOnPageLoadAnimation3']!),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 48.0, 0.0, 0.0),
-                                            child: Text(
-                                              'Savor chef-inspired meals without the hassle of cooking or cleaning up, with our gourmet meal delivery service.',
-                                              textAlign: TextAlign.center,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ).animateOnPageLoad(animationsMap[
-                                                'textOnPageLoadAnimation6']!),
                                           ),
                                         ],
                                       ),
@@ -442,7 +346,7 @@ class _OnboardingSlideshowWidgetState extends State<OnboardingSlideshowWidget>
                                         .SmoothPageIndicator(
                                       controller: _model.pageViewController ??=
                                           PageController(initialPage: 0),
-                                      count: 3,
+                                      count: 2,
                                       axisDirection: Axis.horizontal,
                                       onDotClicked: (i) async {
                                         await _model.pageViewController!
@@ -515,10 +419,10 @@ class _OnboardingSlideshowWidgetState extends State<OnboardingSlideshowWidget>
                               0.0, 0.0, 0.0, 0.0),
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
+                          color: FlutterFlowTheme.of(context).secondary,
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Inter',
+                                    fontFamily: 'Ubuntu',
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 0.0,

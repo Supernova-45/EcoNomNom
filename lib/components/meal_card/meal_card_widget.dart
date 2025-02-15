@@ -173,14 +173,17 @@ class _MealCardWidgetState extends State<MealCardWidget>
                               size: 32.0,
                             ),
                           ),
-                          Align(
-                            alignment: AlignmentDirectional(1.0, -1.0),
-                            child: Icon(
-                              Icons.favorite_rounded,
-                              color: Color(0xFFFF4E59),
-                              size: 32.0,
-                            ).animateOnPageLoad(
-                                animationsMap['iconOnPageLoadAnimation']!),
+                          Opacity(
+                            opacity: 0.0,
+                            child: Align(
+                              alignment: AlignmentDirectional(1.0, -1.0),
+                              child: Icon(
+                                Icons.favorite_rounded,
+                                color: Color(0xFFFF4E59),
+                                size: 32.0,
+                              ).animateOnPageLoad(
+                                  animationsMap['iconOnPageLoadAnimation']!),
+                            ),
                           ),
                         ],
                       ),
@@ -202,7 +205,7 @@ class _MealCardWidgetState extends State<MealCardWidget>
               ),
               maxLines: 2,
               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Inter',
+                    fontFamily: 'Ubuntu',
                     letterSpacing: 0.0,
                   ),
             ),
@@ -227,7 +230,7 @@ class _MealCardWidgetState extends State<MealCardWidget>
                           '10',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
+                              fontFamily: 'Ubuntu',
                               color: FlutterFlowTheme.of(context).primary,
                               fontSize: 10.0,
                               letterSpacing: 0.0,

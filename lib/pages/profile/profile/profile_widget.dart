@@ -88,7 +88,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .labelLarge
                                 .override(
-                                  fontFamily: 'Inter',
+                                  fontFamily: 'Ubuntu',
                                   letterSpacing: 0.0,
                                 ),
                           ),
@@ -99,7 +99,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .displaySmall
                                 .override(
-                                  fontFamily: 'Inter',
+                                  fontFamily: 'Ubuntu',
                                   letterSpacing: 0.0,
                                 ),
                           ),
@@ -127,7 +127,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .titleMedium
                                         .override(
-                                          fontFamily: 'Inter',
+                                          fontFamily: 'Ubuntu',
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -139,7 +139,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .labelLarge
                                           .override(
-                                            fontFamily: 'Inter',
+                                            fontFamily: 'Ubuntu',
                                             color: FlutterFlowTheme.of(context)
                                                 .info,
                                             letterSpacing: 0.0,
@@ -257,7 +257,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                             context)
                                                         .bodyLarge
                                                         .override(
-                                                          fontFamily: 'Inter',
+                                                          fontFamily: 'Ubuntu',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -327,7 +327,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                           context)
                                                       .bodyLarge
                                                       .override(
-                                                        fontFamily: 'Inter',
+                                                        fontFamily: 'Ubuntu',
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -409,7 +409,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                             context)
                                                         .bodyLarge
                                                         .override(
-                                                          fontFamily: 'Inter',
+                                                          fontFamily: 'Ubuntu',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -478,7 +478,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                           context)
                                                       .bodyLarge
                                                       .override(
-                                                        fontFamily: 'Inter',
+                                                        fontFamily: 'Ubuntu',
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -579,7 +579,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                             context)
                                                         .bodyLarge
                                                         .override(
-                                                          fontFamily: 'Inter',
+                                                          fontFamily: 'Ubuntu',
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -687,7 +687,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                               .of(context)
                                                           .bodyLarge
                                                           .override(
-                                                            fontFamily: 'Inter',
+                                                            fontFamily:
+                                                                'Ubuntu',
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -790,7 +791,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                             context)
                                                         .headlineSmall
                                                         .override(
-                                                          fontFamily: 'Inter',
+                                                          fontFamily: 'Ubuntu',
                                                           fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                         ),
@@ -860,7 +861,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyLarge
                                                       .override(
-                                                        fontFamily: 'Inter',
+                                                        fontFamily: 'Ubuntu',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),

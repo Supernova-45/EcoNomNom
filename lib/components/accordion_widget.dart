@@ -122,7 +122,7 @@ class _AccordionWidgetState extends State<AccordionWidget> {
                       child: Text(
                         widget!.question!,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
+                              fontFamily: 'Ubuntu',
                               fontSize: 16.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
@@ -139,7 +139,7 @@ class _AccordionWidgetState extends State<AccordionWidget> {
                   child: Text(
                     widget!.answer!,
                     style: FlutterFlowTheme.of(context).labelLarge.override(
-                          fontFamily: 'Inter',
+                          fontFamily: 'Ubuntu',
                           letterSpacing: 0.0,
                           lineHeight: 1.4,
                         ),

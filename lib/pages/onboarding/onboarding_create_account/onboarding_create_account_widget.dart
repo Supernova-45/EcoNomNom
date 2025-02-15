@@ -90,7 +90,7 @@ class _OnboardingCreateAccountWidgetState
                     child: Text(
                       'Create an account',
                       style: FlutterFlowTheme.of(context).displaySmall.override(
-                            fontFamily: 'Inter',
+                            fontFamily: 'Ubuntu',
                             letterSpacing: 0.0,
                           ),
                     ),
@@ -116,7 +116,7 @@ class _OnboardingCreateAccountWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Ubuntu',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -167,7 +167,7 @@ class _OnboardingCreateAccountWidgetState
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: 'Ubuntu',
                                       fontSize: 16.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
@@ -198,7 +198,7 @@ class _OnboardingCreateAccountWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Ubuntu',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -248,7 +248,7 @@ class _OnboardingCreateAccountWidgetState
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: 'Ubuntu',
                                       fontSize: 16.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
@@ -280,7 +280,7 @@ class _OnboardingCreateAccountWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Ubuntu',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -345,7 +345,7 @@ class _OnboardingCreateAccountWidgetState
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: 'Ubuntu',
                                       fontSize: 16.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
@@ -418,7 +418,7 @@ class _OnboardingCreateAccountWidgetState
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Inter',
+                                  fontFamily: 'Ubuntu',
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 0.0,
@@ -494,7 +494,7 @@ class _OnboardingCreateAccountWidgetState
                                         style: FlutterFlowTheme.of(context)
                                             .bodySmall
                                             .override(
-                                              fontFamily: 'Inter',
+                                              fontFamily: 'Ubuntu',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -503,7 +503,7 @@ class _OnboardingCreateAccountWidgetState
                                         style: FlutterFlowTheme.of(context)
                                             .bodySmall
                                             .override(
-                                              fontFamily: 'Inter',
+                                              fontFamily: 'Ubuntu',
                                               letterSpacing: 0.0,
                                               decoration:
                                                   TextDecoration.underline,
@@ -517,7 +517,7 @@ class _OnboardingCreateAccountWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodySmall
                                         .override(
-                                          fontFamily: 'Inter',
+                                          fontFamily: 'Ubuntu',
                                           letterSpacing: 0.0,
                                         ),
                                   ),

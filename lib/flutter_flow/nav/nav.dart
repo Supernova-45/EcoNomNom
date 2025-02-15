@@ -114,7 +114,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'Dashboard',
               path: 'dashboard',
-              requireAuth: true,
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'Dashboard')
                   : DashboardWidget(),

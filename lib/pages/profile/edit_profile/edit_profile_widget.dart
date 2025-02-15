@@ -100,7 +100,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                     child: Text(
                       'Edit Profile',
                       style: FlutterFlowTheme.of(context).displaySmall.override(
-                            fontFamily: 'Inter',
+                            fontFamily: 'Ubuntu',
                             letterSpacing: 0.0,
                           ),
                     ),
@@ -124,7 +124,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: 'Ubuntu',
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -193,7 +193,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Ubuntu',
                                         fontSize: 16.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
@@ -256,7 +256,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).bodyMedium.override(
-                                  fontFamily: 'Inter',
+                                  fontFamily: 'Ubuntu',
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
                                   letterSpacing: 0.0,
@@ -312,7 +312,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         color: Color(0xFFFFD4D4),
                         textStyle:
                             FlutterFlowTheme.of(context).bodyMedium.override(
-                                  fontFamily: 'Inter',
+                                  fontFamily: 'Ubuntu',
                                   color: Color(0xFFB74D4D),
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
@@ -341,7 +341,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       focusedErrorBorder: InputBorder.none,
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Inter',
+                          fontFamily: 'Ubuntu',
                           color: FlutterFlowTheme.of(context).primaryBackground,
                           fontSize: 1.0,
                           letterSpacing: 0.0,

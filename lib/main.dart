@@ -176,7 +176,7 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.restaurant_sharp,
               size: 24.0,
             ),
-            label: 'Meals',
+            label: 'Products',
             tooltip: '',
           ),
           BottomNavigationBarItem(

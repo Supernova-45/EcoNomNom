@@ -77,7 +77,7 @@ class _EatingPreferencesWidgetState extends State<EatingPreferencesWidget> {
                     child: Text(
                       'Eating Preferences',
                       style: FlutterFlowTheme.of(context).displaySmall.override(
-                            fontFamily: 'Inter',
+                            fontFamily: 'Ubuntu',
                             letterSpacing: 0.0,
                           ),
                     ),
@@ -180,7 +180,7 @@ class _EatingPreferencesWidgetState extends State<EatingPreferencesWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyLarge
                                                       .override(
-                                                        fontFamily: 'Inter',
+                                                        fontFamily: 'Ubuntu',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -259,7 +259,7 @@ class _EatingPreferencesWidgetState extends State<EatingPreferencesWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyLarge
                                                       .override(
-                                                        fontFamily: 'Inter',
+                                                        fontFamily: 'Ubuntu',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -338,7 +338,7 @@ class _EatingPreferencesWidgetState extends State<EatingPreferencesWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyLarge
                                                       .override(
-                                                        fontFamily: 'Inter',
+                                                        fontFamily: 'Ubuntu',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),

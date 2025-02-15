@@ -76,7 +76,7 @@ class _PreferenceItemWidgetState extends State<PreferenceItemWidget> {
               Text(
                 widget!.text!,
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Inter',
+                      fontFamily: 'Ubuntu',
                       color: widget!.selectedItems!.contains(widget!.text)
                           ? FlutterFlowTheme.of(context).primaryBackground
                           : FlutterFlowTheme.of(context).primaryText,

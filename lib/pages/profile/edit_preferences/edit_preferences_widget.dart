@@ -168,7 +168,7 @@ class _EditPreferencesWidgetState extends State<EditPreferencesWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .displaySmall
                                                 .override(
-                                                  fontFamily: 'Inter',
+                                                  fontFamily: 'Ubuntu',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -237,7 +237,7 @@ class _EditPreferencesWidgetState extends State<EditPreferencesWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .displaySmall
                                                 .override(
-                                                  fontFamily: 'Inter',
+                                                  fontFamily: 'Ubuntu',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -337,7 +337,7 @@ class _EditPreferencesWidgetState extends State<EditPreferencesWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .displaySmall
                                                 .override(
-                                                  fontFamily: 'Inter',
+                                                  fontFamily: 'Ubuntu',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -468,7 +468,7 @@ class _EditPreferencesWidgetState extends State<EditPreferencesWidget> {
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Inter',
+                                  fontFamily: 'Ubuntu',
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 0.0,

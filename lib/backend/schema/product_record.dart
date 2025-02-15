@@ -66,6 +66,61 @@ class ProductRecord extends FirestoreRecord {
   double get sustainabilityScore => _sustainabilityScore ?? 0.0;
   bool hasSustainabilityScore() => _sustainabilityScore != null;
 
+  // "carbon_footprint" field.
+  double? _carbonFootprint;
+  double get carbonFootprint => _carbonFootprint ?? 0.0;
+  bool hasCarbonFootprint() => _carbonFootprint != null;
+
+  // "green_score" field.
+  String? _greenScore;
+  String get greenScore => _greenScore ?? '';
+  bool hasGreenScore() => _greenScore != null;
+
+  // "green_score_rating" field.
+  String? _greenScoreRating;
+  String get greenScoreRating => _greenScoreRating ?? '';
+  bool hasGreenScoreRating() => _greenScoreRating != null;
+
+  // "contains_palm_oil" field.
+  bool? _containsPalmOil;
+  bool get containsPalmOil => _containsPalmOil ?? false;
+  bool hasContainsPalmOil() => _containsPalmOil != null;
+
+  // "country_of_origin" field.
+  String? _countryOfOrigin;
+  String get countryOfOrigin => _countryOfOrigin ?? '';
+  bool hasCountryOfOrigin() => _countryOfOrigin != null;
+
+  // "threatens_species" field.
+  bool? _threatensSpecies;
+  bool get threatensSpecies => _threatensSpecies ?? false;
+  bool hasThreatensSpecies() => _threatensSpecies != null;
+
+  // "packaging_impact" field.
+  String? _packagingImpact;
+  String get packagingImpact => _packagingImpact ?? '';
+  bool hasPackagingImpact() => _packagingImpact != null;
+
+  // "carbon_footprint_to_car" field.
+  double? _carbonFootprintToCar;
+  double get carbonFootprintToCar => _carbonFootprintToCar ?? 0.0;
+  bool hasCarbonFootprintToCar() => _carbonFootprintToCar != null;
+
+  // "responsibly_sourced" field.
+  bool? _responsiblySourced;
+  bool get responsiblySourced => _responsiblySourced ?? false;
+  bool hasResponsiblySourced() => _responsiblySourced != null;
+
+  // "animal_welfare_good" field.
+  bool? _animalWelfareGood;
+  bool get animalWelfareGood => _animalWelfareGood ?? false;
+  bool hasAnimalWelfareGood() => _animalWelfareGood != null;
+
+  // "no_chemicals" field.
+  bool? _noChemicals;
+  bool get noChemicals => _noChemicals ?? false;
+  bool hasNoChemicals() => _noChemicals != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _description = snapshotData['description'] as String?;
@@ -78,6 +133,18 @@ class ProductRecord extends FirestoreRecord {
     _image = snapshotData['image'] as String?;
     _sustainabilityScore =
         castToType<double>(snapshotData['sustainability_score']);
+    _carbonFootprint = castToType<double>(snapshotData['carbon_footprint']);
+    _greenScore = snapshotData['green_score'] as String?;
+    _greenScoreRating = snapshotData['green_score_rating'] as String?;
+    _containsPalmOil = snapshotData['contains_palm_oil'] as bool?;
+    _countryOfOrigin = snapshotData['country_of_origin'] as String?;
+    _threatensSpecies = snapshotData['threatens_species'] as bool?;
+    _packagingImpact = snapshotData['packaging_impact'] as String?;
+    _carbonFootprintToCar =
+        castToType<double>(snapshotData['carbon_footprint_to_car']);
+    _responsiblySourced = snapshotData['responsibly_sourced'] as bool?;
+    _animalWelfareGood = snapshotData['animal_welfare_good'] as bool?;
+    _noChemicals = snapshotData['no_chemicals'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -125,6 +192,17 @@ Map<String, dynamic> createProductRecordData({
   double? salePrice,
   String? image,
   double? sustainabilityScore,
+  double? carbonFootprint,
+  String? greenScore,
+  String? greenScoreRating,
+  bool? containsPalmOil,
+  String? countryOfOrigin,
+  bool? threatensSpecies,
+  String? packagingImpact,
+  double? carbonFootprintToCar,
+  bool? responsiblySourced,
+  bool? animalWelfareGood,
+  bool? noChemicals,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -138,6 +216,17 @@ Map<String, dynamic> createProductRecordData({
       'sale_price': salePrice,
       'image': image,
       'sustainability_score': sustainabilityScore,
+      'carbon_footprint': carbonFootprint,
+      'green_score': greenScore,
+      'green_score_rating': greenScoreRating,
+      'contains_palm_oil': containsPalmOil,
+      'country_of_origin': countryOfOrigin,
+      'threatens_species': threatensSpecies,
+      'packaging_impact': packagingImpact,
+      'carbon_footprint_to_car': carbonFootprintToCar,
+      'responsibly_sourced': responsiblySourced,
+      'animal_welfare_good': animalWelfareGood,
+      'no_chemicals': noChemicals,
     }.withoutNulls,
   );
 
@@ -158,7 +247,18 @@ class ProductRecordDocumentEquality implements Equality<ProductRecord> {
         e1?.onSale == e2?.onSale &&
         e1?.salePrice == e2?.salePrice &&
         e1?.image == e2?.image &&
-        e1?.sustainabilityScore == e2?.sustainabilityScore;
+        e1?.sustainabilityScore == e2?.sustainabilityScore &&
+        e1?.carbonFootprint == e2?.carbonFootprint &&
+        e1?.greenScore == e2?.greenScore &&
+        e1?.greenScoreRating == e2?.greenScoreRating &&
+        e1?.containsPalmOil == e2?.containsPalmOil &&
+        e1?.countryOfOrigin == e2?.countryOfOrigin &&
+        e1?.threatensSpecies == e2?.threatensSpecies &&
+        e1?.packagingImpact == e2?.packagingImpact &&
+        e1?.carbonFootprintToCar == e2?.carbonFootprintToCar &&
+        e1?.responsiblySourced == e2?.responsiblySourced &&
+        e1?.animalWelfareGood == e2?.animalWelfareGood &&
+        e1?.noChemicals == e2?.noChemicals;
   }
 
   @override
@@ -172,7 +272,18 @@ class ProductRecordDocumentEquality implements Equality<ProductRecord> {
         e?.onSale,
         e?.salePrice,
         e?.image,
-        e?.sustainabilityScore
+        e?.sustainabilityScore,
+        e?.carbonFootprint,
+        e?.greenScore,
+        e?.greenScoreRating,
+        e?.containsPalmOil,
+        e?.countryOfOrigin,
+        e?.threatensSpecies,
+        e?.packagingImpact,
+        e?.carbonFootprintToCar,
+        e?.responsiblySourced,
+        e?.animalWelfareGood,
+        e?.noChemicals
       ]);
 
   @override

@@ -112,7 +112,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .displaySmall
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: 'Ubuntu',
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -217,7 +217,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .displaySmall
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: 'Ubuntu',
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -227,7 +227,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .labelLarge
                                   .override(
-                                    fontFamily: 'Inter',
+                                    fontFamily: 'Ubuntu',
                                     letterSpacing: 0.0,
                                     lineHeight: 1.4,
                                   ),
@@ -247,7 +247,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .headlineSmall
                                           .override(
-                                            fontFamily: 'Inter',
+                                            fontFamily: 'Ubuntu',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -328,7 +328,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                                                                   .titleMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Inter',
+                                                                        'Ubuntu',
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
@@ -352,7 +352,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                                                                       .bodySmall
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Inter',
+                                                                            'Ubuntu',
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),

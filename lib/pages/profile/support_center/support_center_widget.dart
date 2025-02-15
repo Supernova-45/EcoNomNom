@@ -76,7 +76,7 @@ class _SupportCenterWidgetState extends State<SupportCenterWidget> {
                     child: Text(
                       'Support Center',
                       style: FlutterFlowTheme.of(context).displaySmall.override(
-                            fontFamily: 'Inter',
+                            fontFamily: 'Ubuntu',
                             letterSpacing: 0.0,
                           ),
                     ),

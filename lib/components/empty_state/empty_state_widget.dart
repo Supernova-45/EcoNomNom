@@ -69,7 +69,7 @@ class _EmptyStateWidgetState extends State<EmptyStateWidget> {
                   ),
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).displaySmall.override(
-                        fontFamily: 'Inter',
+                        fontFamily: 'Ubuntu',
                         letterSpacing: 0.0,
                       ),
                 ),
@@ -83,7 +83,7 @@ class _EmptyStateWidgetState extends State<EmptyStateWidget> {
                   ),
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).labelLarge.override(
-                        fontFamily: 'Inter',
+                        fontFamily: 'Ubuntu',
                         letterSpacing: 0.0,
                       ),
                 ),

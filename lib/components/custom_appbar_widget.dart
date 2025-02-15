@@ -102,7 +102,7 @@ class _CustomAppbarWidgetState extends State<CustomAppbarWidget> {
                       EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Inter',
+                        fontFamily: 'Ubuntu',
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.w600,

@@ -86,7 +86,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .displaySmall
                                 .override(
-                                  fontFamily: 'Inter',
+                                  fontFamily: 'Ubuntu',
                                   letterSpacing: 0.0,
                                 ),
                           ),
@@ -110,7 +110,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .labelLarge
                                           .override(
-                                            fontFamily: 'Inter',
+                                            fontFamily: 'Ubuntu',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -123,7 +123,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily: 'Inter',
+                                              fontFamily: 'Ubuntu',
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -191,7 +191,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Inter',
+                                              fontFamily: 'Ubuntu',
                                               fontSize: 16.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
@@ -254,7 +254,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Inter',
+                                    fontFamily: 'Ubuntu',
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 0.0,

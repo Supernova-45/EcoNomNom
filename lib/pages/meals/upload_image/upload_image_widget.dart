@@ -53,24 +53,33 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).background,
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
+            padding: EdgeInsetsDirectional.fromSTEB(30.0, 50.0, 30.0, 50.0),
             child: SingleChildScrollView(
               primary: false,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'What do you want to eat?',
-                    style: FlutterFlowTheme.of(context).displaySmall.override(
-                          fontFamily: 'Inter',
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.w600,
-                        ),
+                  Align(
+                    alignment: AlignmentDirectional(0.0, 10.0),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 10.0),
+                      child: Text(
+                        'What do you want to eat?',
+                        style:
+                            FlutterFlowTheme.of(context).displaySmall.override(
+                                  fontFamily: 'Ubuntu',
+                                  fontSize: 27.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                      ),
+                    ),
                   ),
                   TextFormField(
                     controller: _model.textController,
@@ -81,58 +90,59 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
                       labelText: 'Describe your craving...',
                       labelStyle:
                           FlutterFlowTheme.of(context).bodyMedium.override(
-                                fontFamily: 'Inter',
+                                fontFamily: 'Ubuntu',
+                                fontSize: 14.0,
                                 letterSpacing: 0.0,
                               ),
                       hintStyle:
                           FlutterFlowTheme.of(context).bodyMedium.override(
-                                fontFamily: 'Inter',
+                                fontFamily: 'Ubuntu',
                                 letterSpacing: 0.0,
                               ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).alternate,
+                          color: FlutterFlowTheme.of(context).primaryBackground,
                           width: 1.0,
                         ),
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Color(0x00000000),
                           width: 1.0,
                         ),
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
                       errorBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Color(0x00000000),
                           width: 1.0,
                         ),
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Color(0x00000000),
                           width: 1.0,
                         ),
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
                       filled: true,
                       fillColor:
                           FlutterFlowTheme.of(context).secondaryBackground,
                     ),
                     style: FlutterFlowTheme.of(context).bodyLarge.override(
-                          fontFamily: 'Inter',
+                          fontFamily: 'Ubuntu',
                           letterSpacing: 0.0,
                         ),
                     maxLines: 5,
-                    minLines: 3,
+                    minLines: 2,
                     validator:
                         _model.textControllerValidator.asValidator(context),
                   ),
                   Material(
                     color: Colors.transparent,
-                    elevation: 2.0,
+                    elevation: 0.0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16.0),
                     ),
@@ -141,6 +151,7 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                         borderRadius: BorderRadius.circular(16.0),
+                        shape: BoxShape.rectangle,
                       ),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -153,7 +164,7 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .headlineSmall
                                   .override(
-                                    fontFamily: 'Inter',
+                                    fontFamily: 'Ubuntu',
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -185,6 +196,12 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
                                         MediaQuery.sizeOf(context).height * 0.9,
                                     decoration: BoxDecoration(
                                       color: Color(0x33000000),
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(10.0),
+                                        bottomRight: Radius.circular(10.0),
+                                        topLeft: Radius.circular(10.0),
+                                        topRight: Radius.circular(10.0),
+                                      ),
                                     ),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(8.0),
@@ -217,7 +234,7 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
                                 FFButtonWidget(
                                   onPressed: () async {
                                     logFirebaseEvent(
-                                        'UPLOAD_IMAGE_PAGE_TAKE_PHOTO_BTN_ON_TAP');
+                                        'UPLOAD_IMAGE_UPLOAD_PHOTO_BTN_ON_TAP');
                                     logFirebaseEvent(
                                         'Button_upload_media_to_firebase');
                                     final selectedMedia =
@@ -288,7 +305,7 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
                                       }
                                     }
                                   },
-                                  text: 'Take Photo',
+                                  text: 'Upload Photo',
                                   icon: Icon(
                                     Icons.camera_alt,
                                     color: FlutterFlowTheme.of(context).info,
@@ -300,11 +317,12 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
                                     padding: EdgeInsets.all(8.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color:
+                                        FlutterFlowTheme.of(context).secondary,
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
-                                          fontFamily: 'Inter',
+                                          fontFamily: 'Ubuntu',
                                           color:
                                               FlutterFlowTheme.of(context).info,
                                           letterSpacing: 0.0,
@@ -320,37 +338,41 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
                       ),
                     ),
                   ),
-                  FFButtonWidget(
-                    onPressed: () async {
-                      logFirebaseEvent('UPLOAD_IMAGE_PAGE_SUBMIT_BTN_ON_TAP');
-                      logFirebaseEvent('Button_backend_call');
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        logFirebaseEvent('UPLOAD_IMAGE_PAGE_SUBMIT_BTN_ON_TAP');
+                        logFirebaseEvent('Button_backend_call');
 
-                      await ProductRecord.collection
-                          .doc()
-                          .set(createProductRecordData(
-                            image: _model.uploadedFileUrl,
-                            name: _model.textController.text,
-                          ));
-                      logFirebaseEvent('Button_navigate_to');
+                        await ProductRecord.collection
+                            .doc()
+                            .set(createProductRecordData(
+                              image: _model.uploadedFileUrl,
+                              name: _model.textController.text,
+                            ));
+                        logFirebaseEvent('Button_navigate_to');
 
-                      context.pushNamed('Dashboard');
-                    },
-                    text: 'Submit',
-                    options: FFButtonOptions(
-                      width: MediaQuery.sizeOf(context).width * 1.0,
-                      height: 50.0,
-                      padding: EdgeInsets.all(8.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Inter',
-                                color: FlutterFlowTheme.of(context).info,
-                                letterSpacing: 0.0,
-                              ),
-                      elevation: 0.0,
-                      borderRadius: BorderRadius.circular(25.0),
+                        context.pushNamed('Dashboard');
+                      },
+                      text: 'Submit',
+                      options: FFButtonOptions(
+                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        height: 50.0,
+                        padding: EdgeInsets.all(8.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).secondary,
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Ubuntu',
+                                  color: FlutterFlowTheme.of(context).info,
+                                  letterSpacing: 0.0,
+                                ),
+                        elevation: 0.0,
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
                     ),
                   ),
                 ].divide(SizedBox(height: 24.0)),

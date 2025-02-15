@@ -61,24 +61,29 @@ class _DashboardWidgetState extends State<DashboardWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 32.0, 16.0, 16.0),
-                child: Column(
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(30.0, 50.0, 30.0, 50.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Which should you buy?',
-                      style: FlutterFlowTheme.of(context).displaySmall.override(
-                            fontFamily: 'Inter',
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w600,
-                          ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                      child: Text(
+                        'Which should you buy?',
+                        style:
+                            FlutterFlowTheme.of(context).displaySmall.override(
+                                  fontFamily: 'Ubuntu',
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                      ),
                     ),
                     Padding(
                       padding:
@@ -86,87 +91,90 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                       child: Text(
                         'Products that are good for you and for the world.',
                         style: FlutterFlowTheme.of(context).labelLarge.override(
-                              fontFamily: 'Inter',
+                              fontFamily: 'Ubuntu',
                               letterSpacing: 0.0,
                             ),
                       ),
                     ),
                   ],
                 ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.all(14.0),
-                  child: StreamBuilder<List<ProductRecord>>(
-                    stream: queryProductRecord(
-                      queryBuilder: (productRecord) => productRecord
-                          .orderBy('sustainability_score', descending: true),
-                      limit: 4,
-                    ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return MealCardLoadingWidget();
-                      }
-                      List<ProductRecord> gridViewProductRecordList =
-                          snapshot.data!;
-                      if (gridViewProductRecordList.isEmpty) {
-                        return Container(
-                          width: double.infinity,
-                          child: EmptyStateWidget(
-                            icon: Icon(
-                              Icons.no_food_outlined,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 64.0,
-                            ),
-                            title: 'No Meals',
-                            description:
-                                'No meals have been created or match your dietary preferences.',
-                          ),
-                        );
-                      }
-
-                      return GridView.builder(
-                        padding: EdgeInsets.zero,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 10.0,
-                          mainAxisSpacing: 10.0,
-                          childAspectRatio: 0.78,
-                        ),
-                        scrollDirection: Axis.vertical,
-                        itemCount: gridViewProductRecordList.length,
-                        itemBuilder: (context, gridViewIndex) {
-                          final gridViewProductRecord =
-                              gridViewProductRecordList[gridViewIndex];
+                Expanded(
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                    child: StreamBuilder<List<ProductRecord>>(
+                      stream: queryProductRecord(
+                        queryBuilder: (productRecord) => productRecord
+                            .orderBy('sustainability_score', descending: true),
+                        limit: 10,
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return MealCardLoadingWidget();
+                        }
+                        List<ProductRecord> gridViewProductRecordList =
+                            snapshot.data!;
+                        if (gridViewProductRecordList.isEmpty) {
                           return Container(
-                            width: 100.0,
-                            height: 100.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                            ),
-                            child: wrapWithModel(
-                              model: _model.mealCardModels.getModel(
-                                gridViewProductRecord.reference.id,
-                                gridViewIndex,
+                            width: double.infinity,
+                            child: EmptyStateWidget(
+                              icon: Icon(
+                                Icons.no_food_outlined,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 64.0,
                               ),
-                              updateCallback: () => safeSetState(() {}),
-                              child: MealCardWidget(
-                                key: Key(
-                                  'Keylba_${gridViewProductRecord.reference.id}',
-                                ),
-                                product: gridViewProductRecord,
-                              ),
+                              title: 'No Meals',
+                              description:
+                                  'No meals have been created or match your dietary preferences.',
                             ),
                           );
-                        },
-                      );
-                    },
+                        }
+
+                        return GridView.builder(
+                          padding: EdgeInsets.zero,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 15.0,
+                            mainAxisSpacing: 10.0,
+                            childAspectRatio: 0.78,
+                          ),
+                          scrollDirection: Axis.vertical,
+                          itemCount: gridViewProductRecordList.length,
+                          itemBuilder: (context, gridViewIndex) {
+                            final gridViewProductRecord =
+                                gridViewProductRecordList[gridViewIndex];
+                            return Container(
+                              width: 100.0,
+                              height: 100.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              child: wrapWithModel(
+                                model: _model.mealCardModels.getModel(
+                                  gridViewProductRecord.reference.id,
+                                  gridViewIndex,
+                                ),
+                                updateCallback: () => safeSetState(() {}),
+                                child: MealCardWidget(
+                                  key: Key(
+                                    'Keylba_${gridViewProductRecord.reference.id}',
+                                  ),
+                                  product: gridViewProductRecord,
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -89,7 +89,7 @@ class _PhotoWidgetState extends State<PhotoWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .headlineMedium
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Ubuntu',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -129,7 +129,7 @@ class _PhotoWidgetState extends State<PhotoWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Inter',
+                                              fontFamily: 'Ubuntu',
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryText,
@@ -167,7 +167,7 @@ class _PhotoWidgetState extends State<PhotoWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Ubuntu',
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryText,
                                         fontSize: 16.0,
