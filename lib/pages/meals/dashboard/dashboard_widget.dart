@@ -2,13 +2,16 @@ import '/backend/backend.dart';
 import '/components/empty_state/empty_state_widget.dart';
 import '/components/meal_card/meal_card_widget.dart';
 import '/components/meal_card_loading/meal_card_loading_widget.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'dashboard_model.dart';
@@ -21,10 +24,13 @@ class DashboardWidget extends StatefulWidget {
   State<DashboardWidget> createState() => _DashboardWidgetState();
 }
 
-class _DashboardWidgetState extends State<DashboardWidget> {
+class _DashboardWidgetState extends State<DashboardWidget>
+    with TickerProviderStateMixin {
   late DashboardModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -37,6 +43,21 @@ class _DashboardWidgetState extends State<DashboardWidget> {
       logFirebaseEvent('DASHBOARD_PAGE_Dashboard_ON_INIT_STATE');
       logFirebaseEvent('Dashboard_haptic_feedback');
       HapticFeedback.mediumImpact();
+    });
+
+    animationsMap.addAll({
+      'gridViewOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: Offset(100.0, 0.0),
+            end: Offset(0.0, 0.0),
+          ),
+        ],
+      ),
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -64,18 +85,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
           child: Stack(
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(25.0, 140.0, 0.0, 0.0),
-                child: Container(
-                  width: 170.0,
-                  height: 238.6,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondary,
-                    borderRadius: BorderRadius.circular(24.0),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(30.0, 50.0, 30.0, 50.0),
+                padding: EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 30.0, 50.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,19 +146,16 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                 List<ProductRecord> gridViewProductRecordList =
                                     snapshot.data!;
                                 if (gridViewProductRecordList.isEmpty) {
-                                  return Container(
-                                    width: double.infinity,
-                                    child: EmptyStateWidget(
-                                      icon: Icon(
-                                        Icons.no_food_outlined,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 64.0,
-                                      ),
-                                      title: 'No Meals',
-                                      description:
-                                          'No meals have been created or match your dietary preferences.',
+                                  return EmptyStateWidget(
+                                    icon: Icon(
+                                      Icons.no_food_outlined,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 64.0,
                                     ),
+                                    title: 'No Products Found',
+                                    description:
+                                        'None of the indentified products matched the required preferences',
                                   );
                                 }
 
@@ -157,10 +164,13 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
-                                    crossAxisSpacing: 15.0,
-                                    mainAxisSpacing: 15.0,
+                                    crossAxisSpacing:
+                                        MediaQuery.sizeOf(context).width * 0.04,
+                                    mainAxisSpacing:
+                                        MediaQuery.sizeOf(context).width * 0.04,
                                     childAspectRatio: 0.7,
                                   ),
+                                  primary: false,
                                   scrollDirection: Axis.vertical,
                                   itemCount: gridViewProductRecordList.length,
                                   itemBuilder: (context, gridViewIndex) {
@@ -168,7 +178,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                         gridViewProductRecordList[
                                             gridViewIndex];
                                     return Container(
-                                      width: 100.0,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBackground,
@@ -178,28 +187,72 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           topLeft: Radius.circular(20.0),
                                           topRight: Radius.circular(20.0),
                                         ),
+                                        border: Border.all(
+                                          color: gridViewIndex == 0
+                                              ? FlutterFlowTheme.of(context)
+                                                  .secondary
+                                              : Color(0x00000000),
+                                          width: gridViewIndex == 0 ? 5.0 : 0.0,
+                                        ),
                                       ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 10.0, 10.0, 0.0),
-                                        child: wrapWithModel(
-                                          model: _model.mealCardModels.getModel(
-                                            gridViewProductRecord.reference.id,
-                                            gridViewIndex,
-                                          ),
-                                          updateCallback: () =>
-                                              safeSetState(() {}),
-                                          child: MealCardWidget(
-                                            key: Key(
-                                              'Keylba_${gridViewProductRecord.reference.id}',
+                                      child: Align(
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding: EdgeInsets.all(
+                                              valueOrDefault<double>(
+                                            MediaQuery.sizeOf(context).width *
+                                                0.025,
+                                            0.0,
+                                          )),
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              logFirebaseEvent(
+                                                  'DASHBOARD_PAGE_Container_lba5bzr3_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'mealCard_navigate_to');
+
+                                              context.pushNamed(
+                                                'MealDetails',
+                                                pathParameters: {
+                                                  'productInfo': serializeParam(
+                                                    gridViewProductRecord,
+                                                    ParamType.Document,
+                                                  ),
+                                                }.withoutNulls,
+                                                extra: <String, dynamic>{
+                                                  'productInfo':
+                                                      gridViewProductRecord,
+                                                },
+                                              );
+                                            },
+                                            child: wrapWithModel(
+                                              model: _model.mealCardModels
+                                                  .getModel(
+                                                gridViewProductRecord
+                                                    .reference.id,
+                                                gridViewIndex,
+                                              ),
+                                              updateCallback: () =>
+                                                  safeSetState(() {}),
+                                              child: MealCardWidget(
+                                                key: Key(
+                                                  'Keylba_${gridViewProductRecord.reference.id}',
+                                                ),
+                                                product: gridViewProductRecord,
+                                              ),
                                             ),
-                                            product: gridViewProductRecord,
                                           ),
                                         ),
                                       ),
                                     );
                                   },
-                                );
+                                ).animateOnPageLoad(animationsMap[
+                                    'gridViewOnPageLoadAnimation']!);
                               },
                             ),
                           ),

@@ -69,7 +69,7 @@ class _SplashWidgetState extends State<SplashWidget>
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Color(0x99D6F4CD),
+        backgroundColor: Color(0xFFF3FFE9),
         body: SafeArea(
           top: true,
           child: Stack(
@@ -81,7 +81,7 @@ class _SplashWidgetState extends State<SplashWidget>
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(0.0),
                     child: Image.asset(
-                      'assets/images/economnom_background.png',
+                      'assets/images/economnom_light_background.png',
                       width: 1558.9,
                       height: 1433.26,
                       fit: BoxFit.fitWidth,

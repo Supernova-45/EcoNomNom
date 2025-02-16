@@ -68,7 +68,7 @@ class _CustomAppbarWidgetState extends State<CustomAppbarWidget> {
             borderColor: FlutterFlowTheme.of(context).secondaryBackground,
             borderRadius: 24.0,
             borderWidth: 1.0,
-            buttonSize: 58.58,
+            buttonSize: 50.0,
             fillColor: FlutterFlowTheme.of(context).secondaryBackground,
             icon: Icon(
               Icons.keyboard_arrow_left,
@@ -101,7 +101,7 @@ class _CustomAppbarWidgetState extends State<CustomAppbarWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   iconPadding:
                       EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
+                  color: FlutterFlowTheme.of(context).secondary,
                   textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Ubuntu',
                         color: FlutterFlowTheme.of(context).primaryBackground,

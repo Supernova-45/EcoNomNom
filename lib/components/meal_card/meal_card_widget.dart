@@ -69,186 +69,187 @@ class _MealCardWidgetState extends State<MealCardWidget>
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      splashColor: Colors.transparent,
-      focusColor: Colors.transparent,
-      hoverColor: Colors.transparent,
-      highlightColor: Colors.transparent,
-      onTap: () async {
-        logFirebaseEvent('MEAL_CARD_COMP_Column_7nse8gf3_ON_TAP');
-        logFirebaseEvent('Column_haptic_feedback');
-        HapticFeedback.lightImpact();
-        logFirebaseEvent('Column_navigate_to');
+    return Align(
+      alignment: AlignmentDirectional(0.0, -1.0),
+      child: InkWell(
+        splashColor: Colors.transparent,
+        focusColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        onTap: () async {
+          logFirebaseEvent('MEAL_CARD_COMP_Column_7nse8gf3_ON_TAP');
+          logFirebaseEvent('Column_haptic_feedback');
+          HapticFeedback.lightImpact();
+          logFirebaseEvent('Column_navigate_to');
 
-        context.pushNamed(
-          'MealDetails',
-          pathParameters: {
-            'productInfo': serializeParam(
-              widget!.product,
-              ParamType.Document,
-            ),
-          }.withoutNulls,
-          extra: <String, dynamic>{
-            'productInfo': widget!.product,
-            kTransitionInfoKey: TransitionInfo(
-              hasTransition: true,
-              transitionType: PageTransitionType.bottomToTop,
-            ),
-          },
-        );
-      },
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          InkWell(
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () async {
-              logFirebaseEvent('MEAL_CARD_COMP_Container_xsjr6r56_ON_TAP');
-              logFirebaseEvent('Container_haptic_feedback');
-              HapticFeedback.lightImpact();
-              logFirebaseEvent('Container_navigate_to');
-
-              context.pushNamed(
-                'MealDetails',
-                pathParameters: {
-                  'productInfo': serializeParam(
-                    widget!.product,
-                    ParamType.Document,
-                  ),
-                }.withoutNulls,
-                extra: <String, dynamic>{
-                  'productInfo': widget!.product,
-                  kTransitionInfoKey: TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.bottomToTop,
-                  ),
+          context.pushNamed(
+            'MealDetails',
+            pathParameters: {
+              'productInfo': serializeParam(
+                widget!.product,
+                ParamType.Document,
+              ),
+            }.withoutNulls,
+            extra: <String, dynamic>{
+              'productInfo': widget!.product,
+              kTransitionInfoKey: TransitionInfo(
+                hasTransition: true,
+                transitionType: PageTransitionType.bottomToTop,
+              ),
+            },
+          );
+        },
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  logFirebaseEvent('MEAL_CARD_COMP_Container_xsjr6r56_ON_TAP');
                 },
-              );
-            },
-            onDoubleTap: () async {
-              logFirebaseEvent('MEAL_CARD_Container_xsjr6r56_ON_DOUBLE_T');
-            },
-            child: Container(
-              width: MediaQuery.sizeOf(context).width * 0.48,
-              height: 150.0,
-              decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: Image.network(
-                    valueOrDefault<String>(
-                      widget!.product?.image,
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM1bjLuveRZ6g0nUu_L_XeaMdK3oiyDk_HwA&s',
+                onDoubleTap: () async {
+                  logFirebaseEvent('MEAL_CARD_Container_xsjr6r56_ON_DOUBLE_T');
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: Image.network(
+                        valueOrDefault<String>(
+                          widget!.product?.image,
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM1bjLuveRZ6g0nUu_L_XeaMdK3oiyDk_HwA&s',
+                        ),
+                      ).image,
                     ),
-                  ).image,
-                ),
-                borderRadius: BorderRadius.circular(15.0),
-                border: Border.all(
-                  color: FlutterFlowTheme.of(context).alternate,
-                  width: 1.0,
+                    borderRadius: BorderRadius.circular(15.0),
+                    border: Border.all(
+                      color: FlutterFlowTheme.of(context).alternate,
+                      width: 1.0,
+                    ),
+                  ),
+                  child: Align(
+                    alignment: AlignmentDirectional(1.0, -1.0),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 12.0, 0.0),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          logFirebaseEvent(
+                              'MEAL_CARD_COMP_Stack_83960l4l_ON_TAP');
+                        },
+                        child: Container(
+                          width: 32.0,
+                          height: 32.0,
+                          child: Stack(
+                            children: [
+                              Opacity(
+                                opacity: 0.0,
+                                child: Align(
+                                  alignment: AlignmentDirectional(1.0, -1.0),
+                                  child: Icon(
+                                    Icons.favorite_border_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 32.0,
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(1.0, -1.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'MEAL_CARD_COMP_Icon_mgos74eo_ON_TAP');
+                                  },
+                                  child: Icon(
+                                    Icons.favorite_border_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 32.0,
+                                  ),
+                                ).animateOnPageLoad(
+                                    animationsMap['iconOnPageLoadAnimation']!),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
-              child: Align(
-                alignment: AlignmentDirectional(1.0, -1.0),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+              child: Text(
+                valueOrDefault<String>(
+                  widget!.product?.name,
+                  '[Unknown]',
+                ).maybeHandleOverflow(
+                  maxChars: 36,
+                  replacement: '…',
+                ),
+                maxLines: 2,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Ubuntu',
+                      letterSpacing: 0.0,
+                    ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).accent1,
+                  borderRadius: BorderRadius.circular(24.0),
+                ),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 12.0, 0.0),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      logFirebaseEvent('MEAL_CARD_COMP_Stack_83960l4l_ON_TAP');
-                    },
-                    child: Container(
-                      width: 32.0,
-                      height: 32.0,
-                      child: Stack(
-                        children: [
-                          Align(
-                            alignment: AlignmentDirectional(1.0, -1.0),
-                            child: Icon(
-                              Icons.favorite_border_rounded,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 32.0,
-                            ),
-                          ),
-                          Opacity(
-                            opacity: 0.0,
-                            child: Align(
-                              alignment: AlignmentDirectional(1.0, -1.0),
-                              child: Icon(
-                                Icons.favorite_rounded,
-                                color: Color(0xFFFF4E59),
-                                size: 32.0,
-                              ).animateOnPageLoad(
-                                  animationsMap['iconOnPageLoadAnimation']!),
-                            ),
-                          ),
-                        ],
+                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 6.0, 8.0, 6.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
+                        child: Text(
+                          '${valueOrDefault<String>(
+                            widget!.product?.greenScoreRating,
+                            'B',
+                          )}: (${valueOrDefault<String>(
+                            widget!.product?.sustainabilityScore?.toString(),
+                            '5',
+                          )}/10 GreenScore)',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Ubuntu',
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    fontSize: 10.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                    lineHeight: 1.0,
+                                  ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-            child: Text(
-              valueOrDefault<String>(
-                widget!.product?.name,
-                '[Unknown]',
-              ).maybeHandleOverflow(
-                maxChars: 36,
-                replacement: '…',
-              ),
-              maxLines: 2,
-              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Ubuntu',
-                    letterSpacing: 0.0,
-                  ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).accent1,
-                borderRadius: BorderRadius.circular(24.0),
-              ),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(8.0, 6.0, 8.0, 6.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
-                      child: Text(
-                        '${valueOrDefault<String>(
-                          widget!.product?.sustainabilityScore?.toString(),
-                          '5',
-                        )}/10 Sustainability Score',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Ubuntu',
-                              color: FlutterFlowTheme.of(context).primary,
-                              fontSize: 10.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
-                              lineHeight: 1.0,
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

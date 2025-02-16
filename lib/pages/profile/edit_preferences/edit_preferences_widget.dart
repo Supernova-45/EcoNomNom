@@ -164,7 +164,7 @@ class _EditPreferencesWidgetState extends State<EditPreferencesWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 24.0, 0.0, 0.0),
                                           child: Text(
-                                            'Update diet',
+                                            'Update preferences',
                                             style: FlutterFlowTheme.of(context)
                                                 .displaySmall
                                                 .override(

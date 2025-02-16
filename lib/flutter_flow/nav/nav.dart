@@ -121,7 +121,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'MealDetails',
               path: 'meal/:productInfo',
-              requireAuth: true,
               asyncParams: {
                 'productInfo': getDoc(['product'], ProductRecord.fromSnapshot),
               },
@@ -135,7 +134,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'Profile',
               path: 'profile',
-              requireAuth: true,
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'Profile')
                   : ProfileWidget(),

@@ -75,7 +75,7 @@ class _EatingPreferencesWidgetState extends State<EatingPreferencesWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                     child: Text(
-                      'Eating Preferences',
+                      'Preferences',
                       style: FlutterFlowTheme.of(context).displaySmall.override(
                             fontFamily: 'Ubuntu',
                             letterSpacing: 0.0,
@@ -162,7 +162,7 @@ class _EatingPreferencesWidgetState extends State<EatingPreferencesWidget> {
                                               alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Icon(
-                                                Icons.fastfood_outlined,
+                                                Icons.eco,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
@@ -175,7 +175,7 @@ class _EatingPreferencesWidgetState extends State<EatingPreferencesWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     18.0, 0.0, 0.0, 0.0),
                                             child: Text(
-                                              'Diet',
+                                              'Eco-score',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyLarge
@@ -189,6 +189,46 @@ class _EatingPreferencesWidgetState extends State<EatingPreferencesWidget> {
                                       ),
                                     ),
                                   ),
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Don\'t Care',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Ubuntu',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                    Slider(
+                                      activeColor:
+                                          FlutterFlowTheme.of(context).primary,
+                                      inactiveColor:
+                                          FlutterFlowTheme.of(context)
+                                              .alternate,
+                                      min: 0.0,
+                                      max: 10.0,
+                                      value: _model.sliderValue1 ??= 5.0,
+                                      onChanged: (newValue) {
+                                        newValue = double.parse(
+                                            newValue.toStringAsFixed(2));
+                                        safeSetState(() =>
+                                            _model.sliderValue1 = newValue);
+                                      },
+                                    ),
+                                    Text(
+                                      'Dealbreaker',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Ubuntu',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ],
                                 ),
                                 Divider(
                                   height: 1.0,
@@ -254,7 +294,7 @@ class _EatingPreferencesWidgetState extends State<EatingPreferencesWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     18.0, 0.0, 0.0, 0.0),
                                             child: Text(
-                                              'Allergens',
+                                              'Packaging Impact',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyLarge
@@ -268,6 +308,46 @@ class _EatingPreferencesWidgetState extends State<EatingPreferencesWidget> {
                                       ),
                                     ),
                                   ),
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Don\'t Care',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Ubuntu',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                    Slider(
+                                      activeColor:
+                                          FlutterFlowTheme.of(context).primary,
+                                      inactiveColor:
+                                          FlutterFlowTheme.of(context)
+                                              .alternate,
+                                      min: 0.0,
+                                      max: 10.0,
+                                      value: _model.sliderValue2 ??= 5.0,
+                                      onChanged: (newValue) {
+                                        newValue = double.parse(
+                                            newValue.toStringAsFixed(2));
+                                        safeSetState(() =>
+                                            _model.sliderValue2 = newValue);
+                                      },
+                                    ),
+                                    Text(
+                                      'Dealbreaker',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Ubuntu',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ],
                                 ),
                                 Divider(
                                   height: 1.0,
@@ -320,7 +400,7 @@ class _EatingPreferencesWidgetState extends State<EatingPreferencesWidget> {
                                               alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Icon(
-                                                Icons.thumb_down_outlined,
+                                                Icons.gpp_good,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
@@ -333,7 +413,7 @@ class _EatingPreferencesWidgetState extends State<EatingPreferencesWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     18.0, 0.0, 0.0, 0.0),
                                             child: Text(
-                                              'Disliked Ingredients',
+                                              'Responsbily Sourced',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyLarge
@@ -348,17 +428,158 @@ class _EatingPreferencesWidgetState extends State<EatingPreferencesWidget> {
                                     ),
                                   ),
                                 ),
-                                Divider(
-                                  height: 1.0,
-                                  thickness: 1.0,
-                                  color: FlutterFlowTheme.of(context).accent4,
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Don\'t Care',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Ubuntu',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                    Slider(
+                                      activeColor:
+                                          FlutterFlowTheme.of(context).primary,
+                                      inactiveColor:
+                                          FlutterFlowTheme.of(context)
+                                              .alternate,
+                                      min: 0.0,
+                                      max: 10.0,
+                                      value: _model.sliderValue3 ??= 5.0,
+                                      onChanged: (newValue) {
+                                        newValue = double.parse(
+                                            newValue.toStringAsFixed(2));
+                                        safeSetState(() =>
+                                            _model.sliderValue3 = newValue);
+                                      },
+                                    ),
+                                    Text(
+                                      'Dealbreaker',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Ubuntu',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ],
                                 ),
                               ],
+                            ),
+                            Divider(
+                              height: 1.0,
+                              thickness: 1.0,
+                              color: FlutterFlowTheme.of(context).accent4,
+                            ),
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                logFirebaseEvent(
+                                    'EATING_PREFERENCES_Container_b2um0xuc_ON');
+                                logFirebaseEvent('Container_navigate_to');
+
+                                context.pushNamed(
+                                  'EditPreferences',
+                                  queryParameters: {
+                                    'page': serializeParam(
+                                      2,
+                                      ParamType.int,
+                                    ),
+                                  }.withoutNulls,
+                                );
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 12.0, 0.0, 12.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Container(
+                                        width: 40.0,
+                                        height: 40.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .accent1,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: Align(
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
+                                          child: Icon(
+                                            Icons.attach_money,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            size: 20.0,
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            18.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Sale Price',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyLarge
+                                              .override(
+                                                fontFamily: 'Ubuntu',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         );
                       },
                     ),
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Don\'t Care',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Ubuntu',
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                      Slider(
+                        activeColor: FlutterFlowTheme.of(context).primary,
+                        inactiveColor: FlutterFlowTheme.of(context).alternate,
+                        min: 0.0,
+                        max: 10.0,
+                        value: _model.sliderValue4 ??= 5.0,
+                        onChanged: (newValue) {
+                          newValue = double.parse(newValue.toStringAsFixed(2));
+                          safeSetState(() => _model.sliderValue4 = newValue);
+                        },
+                      ),
+                      Text(
+                        'Dealbreaker',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Ubuntu',
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                    ],
+                  ),
+                  Divider(
+                    height: 1.0,
+                    thickness: 1.0,
+                    color: FlutterFlowTheme.of(context).accent4,
                   ),
                 ],
               ),

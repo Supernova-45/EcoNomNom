@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/custom_appbar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -15,9 +16,18 @@ import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProfileModel extends FlutterFlowModel<ProfileWidget> {
-  @override
-  void initState(BuildContext context) {}
+  ///  State fields for stateful widgets in this page.
+
+  // Model for customAppbar component.
+  late CustomAppbarModel customAppbarModel;
 
   @override
-  void dispose() {}
+  void initState(BuildContext context) {
+    customAppbarModel = createModel(context, () => CustomAppbarModel());
+  }
+
+  @override
+  void dispose() {
+    customAppbarModel.dispose();
+  }
 }

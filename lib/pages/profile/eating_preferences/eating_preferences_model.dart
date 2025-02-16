@@ -14,6 +14,14 @@ class EatingPreferencesModel extends FlutterFlowModel<EatingPreferencesWidget> {
 
   // Model for customAppbar component.
   late CustomAppbarModel customAppbarModel;
+  // State field(s) for Slider widget.
+  double? sliderValue1;
+  // State field(s) for Slider widget.
+  double? sliderValue2;
+  // State field(s) for Slider widget.
+  double? sliderValue3;
+  // State field(s) for Slider widget.
+  double? sliderValue4;
 
   @override
   void initState(BuildContext context) {

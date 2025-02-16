@@ -70,7 +70,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
           return Scaffold(
-            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            backgroundColor: FlutterFlowTheme.of(context).background,
             body: Center(
               child: SizedBox(
                 width: 25.0,
@@ -102,7 +102,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
           },
           child: Scaffold(
             key: scaffoldKey,
-            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            backgroundColor: FlutterFlowTheme.of(context).background,
             body: SafeArea(
               top: true,
               child: Column(
@@ -149,7 +149,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 24.0, 0.0, 0.0),
                                           child: Text(
-                                            'Select your preference',
+                                            'Rank your preference',
                                             style: FlutterFlowTheme.of(context)
                                                 .displaySmall
                                                 .override(
@@ -172,6 +172,8 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
 
                                               return Column(
                                                 mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: List.generate(
@@ -181,20 +183,24 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                                   return DietItemWidget(
                                                     key: Key(
                                                         'Keybqj_${dietIndex}_of_${diet.length}'),
-                                                    dietType: dietItem.dietName,
+                                                    dietType:
+                                                        valueOrDefault<String>(
+                                                      dietItem.dietName,
+                                                      'Eco-scpre',
+                                                    ),
                                                     selectedDiet:
                                                         _model.dietSelection!,
                                                     dietTagline:
                                                         dietItem.dietTagline,
                                                     action: () async {
                                                       logFirebaseEvent(
-                                                          'ONBOARDING_Container_bqjxf8do_CALLBACK');
+                                                          'ONBOARDING_PAGE_EcoScore_CALLBACK');
                                                       logFirebaseEvent(
-                                                          'dietItem_haptic_feedback');
+                                                          'EcoScore_haptic_feedback');
                                                       HapticFeedback
                                                           .selectionClick();
                                                       logFirebaseEvent(
-                                                          'dietItem_update_page_state');
+                                                          'EcoScore_update_page_state');
                                                       _model.dietSelection =
                                                           dietItem.dietName;
                                                       safeSetState(() {});

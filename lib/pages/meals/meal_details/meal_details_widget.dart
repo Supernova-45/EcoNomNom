@@ -42,6 +42,30 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'MealDetails'});
     animationsMap.addAll({
+      'containerOnPageLoadAnimation1': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 400.0.ms,
+            duration: 400.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'containerOnPageLoadAnimation2': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 500.0.ms,
+            begin: Offset(0.0, 100.0),
+            end: Offset(0.0, 0.0),
+          ),
+        ],
+      ),
       'iconOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
@@ -75,7 +99,7 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).background,
         body: Stack(
           children: [
             Align(
@@ -100,49 +124,8 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                     topRight: Radius.circular(0.0),
                   ),
                 ),
-                child: Align(
-                  alignment: AlignmentDirectional(0.0, -1.0),
-                  child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 0.0),
-                    child: wrapWithModel(
-                      model: _model.customAppbarModel,
-                      updateCallback: () => safeSetState(() {}),
-                      child: CustomAppbarWidget(
-                        backButton: true,
-                        actionButton: false,
-                        optionsButton: true,
-                        actionButtonAction: () async {},
-                        optionsButtonAction: () async {
-                          logFirebaseEvent(
-                              'MEAL_DETAILS_Container_vg6xlkz2_CALLBACK');
-                          logFirebaseEvent('customAppbar_bottom_sheet');
-                          await showModalBottomSheet(
-                            isScrollControlled: true,
-                            backgroundColor: Color(0x00FFFFFF),
-                            barrierColor: Color(0x00000000),
-                            context: context,
-                            builder: (context) {
-                              return GestureDetector(
-                                onTap: () {
-                                  FocusScope.of(context).unfocus();
-                                  FocusManager.instance.primaryFocus?.unfocus();
-                                },
-                                child: Padding(
-                                  padding: MediaQuery.viewInsetsOf(context),
-                                  child: MealBottomSheetWidget(
-                                    productInfo: widget!.productInfo,
-                                  ),
-                                ),
-                              );
-                            },
-                          ).then((value) => safeSetState(() {}));
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              ).animateOnPageLoad(
+                  animationsMap['containerOnPageLoadAnimation1']!),
             ),
             Align(
               alignment: AlignmentDirectional(0.0, 0.0),
@@ -171,10 +154,10 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(30.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: ListView(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
                       children: [
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -182,10 +165,13 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                           children: [
                             Expanded(
                               child: Text(
-                                valueOrDefault<String>(
+                                '${valueOrDefault<String>(
                                   widget!.productInfo?.name,
                                   'Product Name',
-                                ),
+                                )} (\$${valueOrDefault<String>(
+                                  widget!.productInfo?.salePrice?.toString(),
+                                  '3',
+                                )})',
                                 style: FlutterFlowTheme.of(context)
                                     .displaySmall
                                     .override(
@@ -200,130 +186,90 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     18.0, 2.0, 0.0, 0.0),
-                                child: StreamBuilder<ProductRecord>(
-                                  stream: ProductRecord.getDocument(
-                                      widget!.productInfo!.reference),
-                                  builder: (context, snapshot) {
-                                    // Customize what your widget looks like when it's loading.
-                                    if (!snapshot.hasData) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 25.0,
-                                          height: 25.0,
-                                          child: CircularProgressIndicator(
-                                            valueColor:
-                                                AlwaysStoppedAnimation<Color>(
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    }
-
-                                    final stackProductRecord = snapshot.data!;
-
-                                    return InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        logFirebaseEvent(
-                                            'MEAL_DETAILS_PAGE_Stack_9idss4zc_ON_TAP');
-                                      },
-                                      child: Stack(
-                                        children: [
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(1.0, -1.0),
-                                            child: Icon(
-                                              Icons.favorite_border_rounded,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              size: 32.0,
-                                            ),
-                                          ),
-                                          Opacity(
-                                            opacity: 0.0,
-                                            child: Align(
-                                              alignment: AlignmentDirectional(
-                                                  1.0, -1.0),
-                                              child: Icon(
-                                                Icons.favorite_rounded,
-                                                color: Color(0xFFFF4E59),
-                                                size: 32.0,
-                                              ).animateOnPageLoad(animationsMap[
-                                                  'iconOnPageLoadAnimation']!),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'MEAL_DETAILS_PAGE_Stack_9idss4zc_ON_TAP');
                                   },
+                                  child: Stack(
+                                    children: [
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(1.0, -1.0),
+                                        child: Icon(
+                                          Icons.favorite_border_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 32.0,
+                                        ),
+                                      ),
+                                      Opacity(
+                                        opacity: 0.0,
+                                        child: Align(
+                                          alignment:
+                                              AlignmentDirectional(1.0, -1.0),
+                                          child: Icon(
+                                            Icons.favorite_rounded,
+                                            color: Color(0xFFFF4E59),
+                                            size: 32.0,
+                                          ).animateOnPageLoad(animationsMap[
+                                              'iconOnPageLoadAnimation']!),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ],
                         ),
-                        Container(
-                          width: 30.0,
-                          height: 20.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(0.0),
-                            shape: BoxShape.rectangle,
-                          ),
-                          child: Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 4.0, 0.0, 0.0),
-                              child: Text(
-                                '\$${valueOrDefault<String>(
-                                  widget!.productInfo?.salePrice?.toString(),
-                                  '2.99',
-                                )}',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Ubuntu',
-                                      fontSize: 18.0,
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 6.0, 0.0, 0.0),
-                          child: Text(
-                            '${valueOrDefault<String>(
-                              widget!.productInfo?.greenScoreRating,
-                              'C',
-                            )} Green Score: ${valueOrDefault<String>(
-                              widget!.productInfo?.greenScore,
-                              'Moderate',
-                            )} environmental impact',
-                            style: FlutterFlowTheme.of(context)
-                                .labelLarge
-                                .override(
-                                  fontFamily: 'Ubuntu',
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w600,
-                                  shadows: [
-                                    Shadow(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      offset: Offset(2.0, 2.0),
-                                      blurRadius: 2.0,
-                                    )
-                                  ],
-                                  lineHeight: 1.5,
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Wrap(
+                              spacing: 0.0,
+                              runSpacing: 0.0,
+                              alignment: WrapAlignment.start,
+                              crossAxisAlignment: WrapCrossAlignment.start,
+                              direction: Axis.horizontal,
+                              runAlignment: WrapAlignment.start,
+                              verticalDirection: VerticalDirection.down,
+                              clipBehavior: Clip.none,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 8.0, 0.0, 0.0),
+                                  child: Text(
+                                    '${widget!.productInfo?.sustainabilityScore?.toString()} environmental impact, grade ${widget!.productInfo?.greenScoreRating}',
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelLarge
+                                        .override(
+                                          fontFamily: 'Ubuntu',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondary,
+                                          fontSize: 18.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                          shadows: [
+                                            Shadow(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              offset: Offset(2.0, 2.0),
+                                              blurRadius: 2.0,
+                                            )
+                                          ],
+                                          lineHeight: 1.5,
+                                        ),
+                                  ),
                                 ),
-                          ),
+                              ],
+                            ),
+                          ],
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
@@ -346,11 +292,7 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                     ),
                                   ),
                                   Text(
-                                    'Equal to driving ${valueOrDefault<String>(
-                                      widget!.productInfo?.sustainabilityScore
-                                          ?.toString(),
-                                      '5',
-                                    )} miles in a petrol car',
+                                    'Equal to driving ${widget!.productInfo?.carbonFootprintToCar?.toString()} miles in a petrol car',
                                     style: FlutterFlowTheme.of(context)
                                         .bodySmall
                                         .override(
@@ -399,32 +341,38 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                     color: Color(0xFFFFECAA),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        24.0, 12.0, 24.0, 12.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Packaging impact: ${valueOrDefault<String>(
-                                            widget!
-                                                .productInfo?.packagingImpact,
-                                            'high',
-                                          )}',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Ubuntu',
-                                                color: Color(0xFF81681E),
-                                                fontSize: 16.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
-                                              ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 12.0, 24.0, 12.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Packaging impact: ${valueOrDefault<String>(
+                                                widget!.productInfo
+                                                    ?.packagingImpact,
+                                                'High',
+                                              )}',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Ubuntu',
+                                                    color: Color(0xFF81681E),
+                                                    fontSize: 16.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
@@ -451,22 +399,25 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                         ),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 12.0, 24.0, 12.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                widget!.productInfo!
-                                                        .containsPalmOil
-                                                    ? 'Contains palm oil'
-                                                    : 'Palm oil free',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 12.0, 24.0, 12.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    widget!.productInfo!
+                                                            .containsPalmOil
+                                                        ? 'Contains palm oil'
+                                                        : 'Palm oil free',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Ubuntu',
@@ -477,9 +428,24 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                                           fontWeight:
                                                               FontWeight.w600,
                                                         ),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                            Wrap(
+                                              spacing: 0.0,
+                                              runSpacing: 0.0,
+                                              alignment: WrapAlignment.start,
+                                              crossAxisAlignment:
+                                                  WrapCrossAlignment.start,
+                                              direction: Axis.horizontal,
+                                              runAlignment: WrapAlignment.start,
+                                              verticalDirection:
+                                                  VerticalDirection.down,
+                                              clipBehavior: Clip.none,
+                                              children: [],
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
@@ -493,22 +459,25 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                         ),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 12.0, 24.0, 12.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                widget!.productInfo!
-                                                        .threatensSpecies
-                                                    ? 'Threatens endangered species'
-                                                    : 'Does not threaten endangered species',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 12.0, 24.0, 12.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    widget!.productInfo!
+                                                            .threatensSpecies
+                                                        ? 'Threatens endangered species'
+                                                        : 'Does not threaten endangered species',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Ubuntu',
@@ -519,9 +488,24 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                                           fontWeight:
                                                               FontWeight.w600,
                                                         ),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                            Wrap(
+                                              spacing: 0.0,
+                                              runSpacing: 0.0,
+                                              alignment: WrapAlignment.start,
+                                              crossAxisAlignment:
+                                                  WrapCrossAlignment.start,
+                                              direction: Axis.horizontal,
+                                              runAlignment: WrapAlignment.start,
+                                              verticalDirection:
+                                                  VerticalDirection.down,
+                                              clipBehavior: Clip.none,
+                                              children: [],
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
@@ -535,22 +519,25 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                         ),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 12.0, 24.0, 12.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                widget!.productInfo!
-                                                        .responsiblySourced
-                                                    ? 'Responsibly sourced'
-                                                    : 'Not responsibly sourced',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 12.0, 24.0, 12.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    widget!.productInfo!
+                                                            .responsiblySourced
+                                                        ? 'Responsibly sourced'
+                                                        : 'Not responsibly sourced',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Ubuntu',
@@ -561,9 +548,24 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                                           fontWeight:
                                                               FontWeight.w600,
                                                         ),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                            Wrap(
+                                              spacing: 0.0,
+                                              runSpacing: 0.0,
+                                              alignment: WrapAlignment.start,
+                                              crossAxisAlignment:
+                                                  WrapCrossAlignment.start,
+                                              direction: Axis.horizontal,
+                                              runAlignment: WrapAlignment.start,
+                                              verticalDirection:
+                                                  VerticalDirection.down,
+                                              clipBehavior: Clip.none,
+                                              children: [],
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
@@ -577,22 +579,25 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                         ),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 12.0, 24.0, 12.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                widget!.productInfo!
-                                                        .animalWelfareGood
-                                                    ? 'Meets animal welfare standards'
-                                                    : 'Does not meet animal welfare standards',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 12.0, 24.0, 12.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    widget!.productInfo!
+                                                            .animalWelfareGood
+                                                        ? 'Meets animal welfare standards'
+                                                        : 'Does not meet animal welfare standards',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Ubuntu',
@@ -603,9 +608,24 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                                           fontWeight:
                                                               FontWeight.w600,
                                                         ),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                            Wrap(
+                                              spacing: 0.0,
+                                              runSpacing: 0.0,
+                                              alignment: WrapAlignment.start,
+                                              crossAxisAlignment:
+                                                  WrapCrossAlignment.start,
+                                              direction: Axis.horizontal,
+                                              runAlignment: WrapAlignment.start,
+                                              verticalDirection:
+                                                  VerticalDirection.down,
+                                              clipBehavior: Clip.none,
+                                              children: [],
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
@@ -619,21 +639,25 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                         ),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 12.0, 24.0, 12.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                widget!.productInfo!.noChemicals
-                                                    ? 'Contains harmful chemicals'
-                                                    : 'Contains safe ingredients',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 12.0, 24.0, 12.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    widget!.productInfo!
+                                                            .noChemicals
+                                                        ? 'Contains harmful chemicals'
+                                                        : 'Contains safe ingredients',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Ubuntu',
@@ -644,9 +668,24 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                                           fontWeight:
                                                               FontWeight.w600,
                                                         ),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                            Wrap(
+                                              spacing: 0.0,
+                                              runSpacing: 0.0,
+                                              alignment: WrapAlignment.start,
+                                              crossAxisAlignment:
+                                                  WrapCrossAlignment.start,
+                                              direction: Axis.horizontal,
+                                              runAlignment: WrapAlignment.start,
+                                              verticalDirection:
+                                                  VerticalDirection.down,
+                                              clipBehavior: Clip.none,
+                                              children: [],
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
@@ -658,6 +697,48 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                         ),
                       ],
                     ),
+                  ),
+                ).animateOnPageLoad(
+                    animationsMap['containerOnPageLoadAnimation2']!),
+              ),
+            ),
+            Align(
+              alignment: AlignmentDirectional(0.0, -1.0),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(24.0, 50.0, 24.0, 0.0),
+                child: wrapWithModel(
+                  model: _model.customAppbarModel,
+                  updateCallback: () => safeSetState(() {}),
+                  child: CustomAppbarWidget(
+                    backButton: true,
+                    actionButton: false,
+                    optionsButton: true,
+                    actionButtonAction: () async {},
+                    optionsButtonAction: () async {
+                      logFirebaseEvent(
+                          'MEAL_DETAILS_Container_vg6xlkz2_CALLBACK');
+                      logFirebaseEvent('customAppbar_bottom_sheet');
+                      await showModalBottomSheet(
+                        isScrollControlled: true,
+                        backgroundColor: Color(0x00FFFFFF),
+                        barrierColor: Color(0x00000000),
+                        context: context,
+                        builder: (context) {
+                          return GestureDetector(
+                            onTap: () {
+                              FocusScope.of(context).unfocus();
+                              FocusManager.instance.primaryFocus?.unfocus();
+                            },
+                            child: Padding(
+                              padding: MediaQuery.viewInsetsOf(context),
+                              child: MealBottomSheetWidget(
+                                productInfo: widget!.productInfo,
+                              ),
+                            ),
+                          );
+                        },
+                      ).then((value) => safeSetState(() {}));
+                    },
                   ),
                 ),
               ),

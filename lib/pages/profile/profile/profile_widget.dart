@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/custom_appbar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -76,6 +77,23 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Expanded(
+                          child: wrapWithModel(
+                            model: _model.customAppbarModel,
+                            updateCallback: () => safeSetState(() {}),
+                            child: CustomAppbarWidget(
+                              backButton: true,
+                              actionButton: true,
+                              actionButtonText: 'Save',
+                              optionsButton: false,
+                              actionButtonAction: () async {
+                                logFirebaseEvent(
+                                    'PROFILE_PAGE_Container_e2a09op8_CALLBACK');
+                              },
+                              optionsButtonAction: () async {},
+                            ),
+                          ),
+                        ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 6.0),
@@ -95,7 +113,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         ),
                         AuthUserStreamWidget(
                           builder: (context) => Text(
-                            currentUserDisplayName,
+                            valueOrDefault<String>(
+                              currentUserDisplayName,
+                              'Om Nom',
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .displaySmall
                                 .override(
@@ -123,28 +144,13 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Thank you for supporting us!',
+                                    'Thank you for shopping \neco-consciously!',
                                     style: FlutterFlowTheme.of(context)
                                         .titleMedium
                                         .override(
                                           fontFamily: 'Ubuntu',
                                           letterSpacing: 0.0,
                                         ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 6.0, 0.0, 0.0),
-                                    child: Text(
-                                      'As a local business, we thank you for supporting us and hope you enjoy.',
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .override(
-                                            fontFamily: 'Ubuntu',
-                                            color: FlutterFlowTheme.of(context)
-                                                .info,
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
                                   ),
                                 ],
                               ),
@@ -174,19 +180,23 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 );
                               }
                               List<CompanyInformationRecord>
-                                  columnCompanyInformationRecordList =
+                                  listViewCompanyInformationRecordList =
                                   snapshot.data!;
                               // Return an empty Container when the item does not exist.
                               if (snapshot.data!.isEmpty) {
                                 return Container();
                               }
-                              final columnCompanyInformationRecord =
-                                  columnCompanyInformationRecordList.isNotEmpty
-                                      ? columnCompanyInformationRecordList.first
+                              final listViewCompanyInformationRecord =
+                                  listViewCompanyInformationRecordList
+                                          .isNotEmpty
+                                      ? listViewCompanyInformationRecordList
+                                          .first
                                       : null;
 
-                              return Column(
-                                mainAxisSize: MainAxisSize.max,
+                              return ListView(
+                                padding: EdgeInsets.zero,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
                                 children: [
                                   InkWell(
                                     splashColor: Colors.transparent,
@@ -343,15 +353,15 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       ],
                                     ),
                                   ),
-                                  if ((columnCompanyInformationRecord?.name !=
+                                  if ((listViewCompanyInformationRecord?.name !=
                                               null &&
-                                          columnCompanyInformationRecord
+                                          listViewCompanyInformationRecord
                                                   ?.name !=
                                               '') &&
-                                      (columnCompanyInformationRecord
+                                      (listViewCompanyInformationRecord
                                                   ?.companyBio !=
                                               null &&
-                                          columnCompanyInformationRecord
+                                          listViewCompanyInformationRecord
                                                   ?.companyBio !=
                                               ''))
                                     InkWell(
@@ -390,7 +400,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                     padding:
                                                         EdgeInsets.all(4.0),
                                                     child: Icon(
-                                                      Icons.info_outlined,
+                                                      Icons.grade,
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -404,7 +414,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                       .fromSTEB(
                                                           18.0, 0.0, 0.0, 0.0),
                                                   child: Text(
-                                                    'About Us',
+                                                    'Your Impact',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyLarge
@@ -494,14 +504,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       ],
                                     ),
                                   ),
-                                  if ((columnCompanyInformationRecord?.email !=
+                                  if ((listViewCompanyInformationRecord
+                                                  ?.email !=
                                               null &&
-                                          columnCompanyInformationRecord
+                                          listViewCompanyInformationRecord
                                                   ?.email !=
                                               '') ||
-                                      (columnCompanyInformationRecord?.phone !=
+                                      (listViewCompanyInformationRecord
+                                                  ?.phone !=
                                               null &&
-                                          columnCompanyInformationRecord
+                                          listViewCompanyInformationRecord
                                                   ?.phone !=
                                               ''))
                                     InkWell(
@@ -512,10 +524,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       onTap: () async {
                                         logFirebaseEvent(
                                             'PROFILE_PAGE_ContactUsTile_ON_TAP');
-                                        if (columnCompanyInformationRecord
+                                        if (listViewCompanyInformationRecord
                                                     ?.email !=
                                                 null &&
-                                            columnCompanyInformationRecord
+                                            listViewCompanyInformationRecord
                                                     ?.email !=
                                                 '') {
                                           logFirebaseEvent(
@@ -523,7 +535,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           await launchUrl(Uri(
                                             scheme: 'mailto',
                                             path:
-                                                columnCompanyInformationRecord!
+                                                listViewCompanyInformationRecord!
                                                     .email,
                                           ));
                                         } else {
@@ -532,7 +544,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           await launchUrl(Uri(
                                             scheme: 'tel',
                                             path:
-                                                columnCompanyInformationRecord!
+                                                listViewCompanyInformationRecord!
                                                     .phone,
                                           ));
                                         }
@@ -597,18 +609,18 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     ),
                                   if (() {
                                     if (isiOS &&
-                                        (columnCompanyInformationRecord
+                                        (listViewCompanyInformationRecord
                                                     ?.appleStoreURL !=
                                                 null &&
-                                            columnCompanyInformationRecord
+                                            listViewCompanyInformationRecord
                                                     ?.appleStoreURL !=
                                                 '')) {
                                       return true;
                                     } else if (isAndroid &&
-                                        (columnCompanyInformationRecord
+                                        (listViewCompanyInformationRecord
                                                     ?.playStoreURL !=
                                                 null &&
-                                            columnCompanyInformationRecord
+                                            listViewCompanyInformationRecord
                                                     ?.playStoreURL !=
                                                 '')) {
                                       return true;
@@ -628,7 +640,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           if (isiOS) {
                                             logFirebaseEvent('ShareTile_share');
                                             await Share.share(
-                                              columnCompanyInformationRecord!
+                                              listViewCompanyInformationRecord!
                                                   .appleStoreURL,
                                               sharePositionOrigin:
                                                   getWidgetBoundingBox(context),
@@ -636,7 +648,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           } else {
                                             logFirebaseEvent('ShareTile_share');
                                             await Share.share(
-                                              columnCompanyInformationRecord!
+                                              listViewCompanyInformationRecord!
                                                   .playStoreURL,
                                               sharePositionOrigin:
                                                   getWidgetBoundingBox(context),
@@ -708,18 +720,18 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     ),
                                   if (() {
                                     if (isiOS &&
-                                        (columnCompanyInformationRecord
+                                        (listViewCompanyInformationRecord
                                                     ?.appleStoreURL !=
                                                 null &&
-                                            columnCompanyInformationRecord
+                                            listViewCompanyInformationRecord
                                                     ?.appleStoreURL !=
                                                 '')) {
                                       return true;
                                     } else if (isAndroid &&
-                                        (columnCompanyInformationRecord
+                                        (listViewCompanyInformationRecord
                                                     ?.playStoreURL !=
                                                 null &&
-                                            columnCompanyInformationRecord
+                                            listViewCompanyInformationRecord
                                                     ?.playStoreURL !=
                                                 '')) {
                                       return true;
@@ -739,13 +751,13 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           logFirebaseEvent(
                                               'ReviewTile_launch_u_r_l');
                                           await launchURL(
-                                              columnCompanyInformationRecord!
+                                              listViewCompanyInformationRecord!
                                                   .appleStoreURL);
                                         } else {
                                           logFirebaseEvent(
                                               'ReviewTile_launch_u_r_l');
                                           await launchURL(
-                                              columnCompanyInformationRecord!
+                                              listViewCompanyInformationRecord!
                                                   .playStoreURL);
                                         }
                                       },

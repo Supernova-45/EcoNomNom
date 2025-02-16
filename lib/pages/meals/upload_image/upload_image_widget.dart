@@ -57,7 +57,7 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(30.0, 50.0, 30.0, 50.0),
+            padding: EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 30.0, 50.0),
             child: SingleChildScrollView(
               primary: false,
               child: Column(
@@ -75,6 +75,7 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
                         style:
                             FlutterFlowTheme.of(context).displaySmall.override(
                                   fontFamily: 'Ubuntu',
+                                  fontSize: 32.0,
                                   letterSpacing: 0.0,
                                 ),
                       ),
@@ -134,7 +135,7 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
                           fontFamily: 'Ubuntu',
                           letterSpacing: 0.0,
                         ),
-                    maxLines: 5,
+                    maxLines: 2,
                     minLines: 2,
                     validator:
                         _model.textControllerValidator.asValidator(context),

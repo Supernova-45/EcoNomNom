@@ -49,7 +49,7 @@ class _SignInWidgetState extends State<SignInWidget> {
     _model.passwordFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {
-          _model.emailAddressTextController?.text = 'tsmith@email.com';
+          _model.emailAddressTextController?.text = 'omnom@email.com';
           _model.passwordTextController?.text = 'password';
         }));
   }
