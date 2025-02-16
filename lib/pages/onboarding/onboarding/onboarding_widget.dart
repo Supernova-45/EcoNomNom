@@ -149,7 +149,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 24.0, 0.0, 0.0),
                                           child: Text(
-                                            'Select your diet',
+                                            'Select your preference',
                                             style: FlutterFlowTheme.of(context)
                                                 .displaySmall
                                                 .override(

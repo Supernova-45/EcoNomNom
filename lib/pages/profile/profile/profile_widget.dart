@@ -322,7 +322,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                     .fromSTEB(
                                                         18.0, 0.0, 0.0, 0.0),
                                                 child: Text(
-                                                  'Eating Preferences',
+                                                  'Sustainability Preferences',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyLarge
@@ -682,7 +682,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                             .fromSTEB(18.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
-                                                      'Share MealPlanner App',
+                                                      'Share EcoNomNom',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyLarge

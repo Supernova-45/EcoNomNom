@@ -398,7 +398,7 @@ class _OnboardingSlideshowWidgetState extends State<OnboardingSlideshowWidget>
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 30.0, 30.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           logFirebaseEvent(
