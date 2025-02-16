@@ -5,8 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:math';
 import 'dart:ui';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart'
-    as smooth_page_indicator;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -59,7 +57,7 @@ class _OnboardingSlideshowWidgetState extends State<OnboardingSlideshowWidget>
           ),
         ],
       ),
-      'imageOnPageLoadAnimation1': AnimationInfo(
+      'imageOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           ScaleEffect(
@@ -86,64 +84,6 @@ class _OnboardingSlideshowWidgetState extends State<OnboardingSlideshowWidget>
         ],
       ),
       'textOnPageLoadAnimation2': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          VisibilityEffect(duration: 1.ms),
-          ScaleEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(0.9, 0.9),
-            end: Offset(1.0, 1.0),
-          ),
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-      'textOnPageLoadAnimation3': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          ScaleEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(0.9, 0.9),
-            end: Offset(1.0, 1.0),
-          ),
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-      'imageOnPageLoadAnimation2': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          ScaleEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(0.9, 0.9),
-            end: Offset(1.0, 1.0),
-          ),
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-      'textOnPageLoadAnimation4': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           VisibilityEffect(duration: 1.ms),
@@ -190,6 +130,21 @@ class _OnboardingSlideshowWidgetState extends State<OnboardingSlideshowWidget>
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 0.0),
+                child: wrapWithModel(
+                  model: _model.customAppbarModel,
+                  updateCallback: () => safeSetState(() {}),
+                  child: CustomAppbarWidget(
+                    backButton: true,
+                    actionButton: false,
+                    optionsButton: false,
+                    switchToDark: false,
+                    actionButtonAction: () async {},
+                    optionsButtonAction: () async {},
+                  ),
+                ),
+              ),
               Expanded(
                 child: Align(
                   alignment: AlignmentDirectional(0.0, 0.0),
@@ -199,192 +154,50 @@ class _OnboardingSlideshowWidgetState extends State<OnboardingSlideshowWidget>
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        wrapWithModel(
-                          model: _model.customAppbarModel,
-                          updateCallback: () => safeSetState(() {}),
-                          child: CustomAppbarWidget(
-                            backButton: true,
-                            actionButton: false,
-                            optionsButton: false,
-                            actionButtonAction: () async {},
-                            optionsButtonAction: () async {},
-                          ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 32.0),
+                          child: Text(
+                            'Go Green with \nEvery Grocery',
+                            textAlign: TextAlign.center,
+                            style: FlutterFlowTheme.of(context)
+                                .displaySmall
+                                .override(
+                                  fontFamily: 'Ubuntu',
+                                  fontSize: 40.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ).animateOnPageLoad(
+                              animationsMap['textOnPageLoadAnimation1']!),
                         ),
-                        Expanded(
-                          child: Container(
-                            width: double.infinity,
-                            height: 500.0,
-                            child: Stack(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 50.0),
-                                  child: PageView(
-                                    controller: _model.pageViewController ??=
-                                        PageController(initialPage: 0),
-                                    scrollDirection: Axis.horizontal,
-                                    children: [
-                                      Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 32.0),
-                                            child: Text(
-                                              'Identify Key Insights\ninto Your Food',
-                                              textAlign: TextAlign.center,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .displaySmall
-                                                      .override(
-                                                        fontFamily: 'Ubuntu',
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                            ).animateOnPageLoad(animationsMap[
-                                                'textOnPageLoadAnimation1']!),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 0.0, 24.0, 0.0),
-                                            child: Image.network(
-                                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/meal-planner-3nia1o/assets/2pdvx24wzpi2/Food1.png',
-                                              height: 250.0,
-                                              fit: BoxFit.fill,
-                                            ).animateOnPageLoad(animationsMap[
-                                                'imageOnPageLoadAnimation1']!),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 48.0, 0.0, 0.0),
-                                            child: Text(
-                                              'Compare sustainability data between different product options, at your fingertips',
-                                              textAlign: TextAlign.center,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .override(
-                                                        fontFamily: 'Ubuntu',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ).animateOnPageLoad(animationsMap[
-                                                'textOnPageLoadAnimation2']!),
-                                          ),
-                                        ],
-                                      ),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 32.0),
-                                            child: Text(
-                                              'Snap Your Products!',
-                                              textAlign: TextAlign.center,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .displaySmall
-                                                      .override(
-                                                        fontFamily: 'Ubuntu',
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                            ).animateOnPageLoad(animationsMap[
-                                                'textOnPageLoadAnimation3']!),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 0.0, 24.0, 0.0),
-                                            child: ClipRRect(
-                                              borderRadius: BorderRadius.only(
-                                                bottomLeft:
-                                                    Radius.circular(40.0),
-                                                bottomRight:
-                                                    Radius.circular(40.0),
-                                                topLeft: Radius.circular(40.0),
-                                                topRight: Radius.circular(40.0),
-                                              ),
-                                              child: Image.asset(
-                                                'assets/images/snack_capture.webp',
-                                                height: 250.0,
-                                                fit: BoxFit.contain,
-                                              ),
-                                            ).animateOnPageLoad(animationsMap[
-                                                'imageOnPageLoadAnimation2']!),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 48.0, 0.0, 0.0),
-                                            child: Text(
-                                              'On the next page, upload a photo of the grocery shelf in front of you and make an informed choice before buying!',
-                                              textAlign: TextAlign.center,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .override(
-                                                        fontFamily: 'Ubuntu',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ).animateOnPageLoad(animationsMap[
-                                                'textOnPageLoadAnimation4']!),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          child: Image.network(
+                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/meal-planner-3nia1o/assets/2pdvx24wzpi2/Food1.png',
+                            height: 250.0,
+                            fit: BoxFit.fill,
+                          ).animateOnPageLoad(
+                              animationsMap['imageOnPageLoadAnimation']!),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              10.0, 48.0, 10.0, 0.0),
+                          child: Text(
+                            'Compare, Calculate, and Cut \nYour Carbon Footprint',
+                            textAlign: TextAlign.center,
+                            style: FlutterFlowTheme.of(context)
+                                .labelLarge
+                                .override(
+                                  fontFamily: 'Ubuntu',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 22.0,
+                                  letterSpacing: 0.0,
                                 ),
-                                Align(
-                                  alignment: AlignmentDirectional(0.0, 1.0),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 10.0),
-                                    child: smooth_page_indicator
-                                        .SmoothPageIndicator(
-                                      controller: _model.pageViewController ??=
-                                          PageController(initialPage: 0),
-                                      count: 2,
-                                      axisDirection: Axis.horizontal,
-                                      onDotClicked: (i) async {
-                                        await _model.pageViewController!
-                                            .animateToPage(
-                                          i,
-                                          duration: Duration(milliseconds: 500),
-                                          curve: Curves.ease,
-                                        );
-                                        safeSetState(() {});
-                                      },
-                                      effect: smooth_page_indicator
-                                          .ExpandingDotsEffect(
-                                        expansionFactor: 3.0,
-                                        spacing: 10.0,
-                                        radius: 10.0,
-                                        dotWidth: 10.0,
-                                        dotHeight: 10.0,
-                                        dotColor: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        activeDotColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                        paintStyle: PaintingStyle.fill,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                          ).animateOnPageLoad(
+                              animationsMap['textOnPageLoadAnimation2']!),
                         ),
                       ],
                     ),
@@ -403,21 +216,19 @@ class _OnboardingSlideshowWidgetState extends State<OnboardingSlideshowWidget>
                         onPressed: () async {
                           logFirebaseEvent(
                               'ONBOARDING_SLIDESHOW_CONTINUE_BTN_ON_TAP');
-                          if (_model.pageViewCurrentIndex == 1) {
-                            logFirebaseEvent('Button_haptic_feedback');
-                            HapticFeedback.lightImpact();
-                            logFirebaseEvent('Button_navigate_to');
+                          logFirebaseEvent('Button_haptic_feedback');
+                          HapticFeedback.lightImpact();
+                          logFirebaseEvent('Button_navigate_to');
 
-                            context.pushNamed('UploadImage');
-                          } else {
-                            logFirebaseEvent('Button_haptic_feedback');
-                            HapticFeedback.lightImpact();
-                            logFirebaseEvent('Button_page_view');
-                            await _model.pageViewController?.nextPage(
-                              duration: Duration(milliseconds: 300),
-                              curve: Curves.ease,
-                            );
-                          }
+                          context.pushNamed(
+                            'Onboarding_SlideshowCopy',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.rightToLeft,
+                              ),
+                            },
+                          );
                         },
                         text: 'Continue',
                         options: FFButtonOptions(

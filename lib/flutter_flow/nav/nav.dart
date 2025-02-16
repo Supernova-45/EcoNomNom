@@ -141,25 +141,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'EditProfile',
               path: 'edit-profile',
-              requireAuth: true,
               builder: (context, params) => EditProfileWidget(),
             ),
             FFRoute(
               name: 'AboutUs',
               path: 'about-us',
-              requireAuth: true,
               builder: (context, params) => AboutUsWidget(),
             ),
             FFRoute(
               name: 'EatingPreferences',
               path: 'eating-preferences',
-              requireAuth: true,
               builder: (context, params) => EatingPreferencesWidget(),
             ),
             FFRoute(
               name: 'SupportCenter',
               path: 'support-center',
-              requireAuth: true,
               builder: (context, params) => SupportCenterWidget(),
             ),
             FFRoute(
@@ -170,7 +166,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'EditPreferences',
               path: 'edit-preferences',
-              requireAuth: true,
               builder: (context, params) => EditPreferencesWidget(
                 page: params.getParam(
                   'page',
@@ -187,6 +182,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'UploadImage',
               path: 'uploadImage',
               builder: (context, params) => UploadImageWidget(),
+            ),
+            FFRoute(
+              name: 'Onboarding_SlideshowCopy',
+              path: 'onboardingtwo',
+              builder: (context, params) => OnboardingSlideshowCopyWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

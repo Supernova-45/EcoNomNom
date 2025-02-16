@@ -24,3 +24,5 @@ export '/pages/onboarding/onboarding/onboarding_widget.dart'
     show OnboardingWidget;
 export '/pages/meals/upload_image/upload_image_widget.dart'
     show UploadImageWidget;
+export '/pages/onboarding/onboarding_slideshow_copy/onboarding_slideshow_copy_widget.dart'
+    show OnboardingSlideshowCopyWidget;

@@ -72,20 +72,19 @@ class _CustomAppbarWidgetState extends State<CustomAppbarWidget> {
             borderWidth: 1.0,
             buttonSize: 44.0,
             fillColor: widget!.switchToDark!
-                ? FlutterFlowTheme.of(context).accent2
-                : FlutterFlowTheme.of(context).secondaryBackground,
+                ? Color(0xFFD5EBCD)
+                : FlutterFlowTheme.of(context).secondary,
             icon: Icon(
               Icons.keyboard_arrow_left,
               color: widget!.switchToDark!
-                  ? FlutterFlowTheme.of(context).secondaryBackground
-                  : FlutterFlowTheme.of(context).primaryText,
+                  ? FlutterFlowTheme.of(context).primaryText
+                  : FlutterFlowTheme.of(context).primaryBackground,
               size: 18.0,
             ),
             onPressed: () async {
               logFirebaseEvent('CUSTOM_APPBAR_keyboard_arrow_left_ICN_ON');
-              logFirebaseEvent('IconButton_navigate_to');
-
-              context.pushNamed('Dashboard');
+              logFirebaseEvent('IconButton_navigate_back');
+              context.safePop();
             },
           ),
         Row(
@@ -108,13 +107,13 @@ class _CustomAppbarWidgetState extends State<CustomAppbarWidget> {
                   iconPadding:
                       EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: widget!.switchToDark!
-                      ? FlutterFlowTheme.of(context).accent2
-                      : FlutterFlowTheme.of(context).secondaryBackground,
+                      ? Color(0xFFD5EBCD)
+                      : FlutterFlowTheme.of(context).secondary,
                   textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Ubuntu',
                         color: widget!.switchToDark!
-                            ? FlutterFlowTheme.of(context).secondaryBackground
-                            : FlutterFlowTheme.of(context).primaryText,
+                            ? FlutterFlowTheme.of(context).primaryText
+                            : FlutterFlowTheme.of(context).primaryBackground,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.w600,
                       ),
@@ -133,13 +132,13 @@ class _CustomAppbarWidgetState extends State<CustomAppbarWidget> {
                 borderWidth: 1.0,
                 buttonSize: 44.0,
                 fillColor: widget!.switchToDark!
-                    ? FlutterFlowTheme.of(context).accent2
-                    : FlutterFlowTheme.of(context).secondaryBackground,
+                    ? Color(0xFFD5EBCD)
+                    : FlutterFlowTheme.of(context).secondary,
                 icon: FaIcon(
                   FontAwesomeIcons.ellipsisH,
                   color: widget!.switchToDark!
-                      ? FlutterFlowTheme.of(context).secondaryBackground
-                      : FlutterFlowTheme.of(context).primaryText,
+                      ? FlutterFlowTheme.of(context).primaryText
+                      : FlutterFlowTheme.of(context).primaryBackground,
                   size: 18.0,
                 ),
                 onPressed: () async {

@@ -490,7 +490,7 @@ class _OnboardingCreateAccountWidgetState
                                     children: [
                                       TextSpan(
                                         text:
-                                            'By clicking \"Create Account,\" you agree to MealPlanner\'s ',
+                                            'By clicking \"Create Account,\" you agree to EcoNomNom’s ',
                                         style: FlutterFlowTheme.of(context)
                                             .bodySmall
                                             .override(

@@ -58,7 +58,26 @@ class _DashboardWidgetState extends State<DashboardWidget>
           ),
         ],
       ),
+      'mealCardOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          ShimmerEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            color: Color(0x80FFFFFF),
+            angle: 0.524,
+          ),
+        ],
+      ),
     });
+    setupAnimations(
+      animationsMap.values.where((anim) =>
+          anim.trigger == AnimationTrigger.onActionTrigger ||
+          !anim.applyInitialState),
+      this,
+    );
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -90,40 +109,45 @@ class _DashboardWidgetState extends State<DashboardWidget>
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 20.0, 0.0, 0.0),
-                          child: Text(
-                            'Which should you buy?',
-                            style: FlutterFlowTheme.of(context)
-                                .displaySmall
-                                .override(
-                                  fontFamily: 'Ubuntu',
-                                  fontSize: 30.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 20.0, 0.0, 0.0),
+                            child: Text(
+                              'Which should you buy?',
+                              style: FlutterFlowTheme.of(context)
+                                  .displaySmall
+                                  .override(
+                                    fontFamily: 'Ubuntu',
+                                    fontSize: 30.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 6.0, 0.0, 0.0),
-                          child: Text(
-                            'Products that are good for you and for the world.',
-                            style: FlutterFlowTheme.of(context)
-                                .labelLarge
-                                .override(
-                                  fontFamily: 'Ubuntu',
-                                  letterSpacing: 0.0,
-                                ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 6.0, 0.0, 0.0),
+                            child: Text(
+                              'Products that are good for you and the world.',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelLarge
+                                  .override(
+                                    fontFamily: 'Ubuntu',
+                                    fontSize: 15.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     Expanded(
                       child: Stack(
@@ -227,6 +251,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 extra: <String, dynamic>{
                                                   'productInfo':
                                                       gridViewProductRecord,
+                                                  kTransitionInfoKey:
+                                                      TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType
+                                                            .bottomToTop,
+                                                  ),
                                                 },
                                               );
                                             },
@@ -246,6 +277,9 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 product: gridViewProductRecord,
                                               ),
                                             ),
+                                          ).animateOnActionTrigger(
+                                            animationsMap[
+                                                'mealCardOnActionTriggerAnimation']!,
                                           ),
                                         ),
                                       ),

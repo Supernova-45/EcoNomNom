@@ -10,6 +10,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'meal_details_model.dart';
@@ -66,7 +67,7 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
           ),
         ],
       ),
-      'iconOnPageLoadAnimation': AnimationInfo(
+      'iconOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           ScaleEffect(
@@ -75,6 +76,30 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
             duration: 600.0.ms,
             begin: Offset(0.0, 0.0),
             end: Offset(1.0, 1.0),
+          ),
+        ],
+      ),
+      'iconOnPageLoadAnimation2': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: Offset(-100.0, 0.0),
+            end: Offset(0.0, 0.0),
+          ),
+        ],
+      ),
+      'textOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: Offset(-100.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -217,7 +242,7 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                             color: Color(0xFFFF4E59),
                                             size: 32.0,
                                           ).animateOnPageLoad(animationsMap[
-                                              'iconOnPageLoadAnimation']!),
+                                              'iconOnPageLoadAnimation1']!),
                                         ),
                                       ),
                                     ],
@@ -227,114 +252,132 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                             ),
                           ],
                         ),
-                        Row(
+                        Column(
                           mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Wrap(
-                              spacing: 0.0,
-                              runSpacing: 0.0,
-                              alignment: WrapAlignment.start,
-                              crossAxisAlignment: WrapCrossAlignment.start,
-                              direction: Axis.horizontal,
-                              runAlignment: WrapAlignment.start,
-                              verticalDirection: VerticalDirection.down,
-                              clipBehavior: Clip.none,
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Wrap(
+                                  spacing: 0.0,
+                                  runSpacing: 0.0,
+                                  alignment: WrapAlignment.start,
+                                  crossAxisAlignment: WrapCrossAlignment.start,
+                                  direction: Axis.horizontal,
+                                  runAlignment: WrapAlignment.start,
+                                  verticalDirection: VerticalDirection.down,
+                                  clipBehavior: Clip.none,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 6.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 8.0, 0.0, 0.0),
+                                            child: Text(
+                                              '${widget!.productInfo?.greenScoreRating} ${widget!.productInfo?.greenScore} environmental impact: ${widget!.productInfo?.sustainabilityScore?.toString()}/10',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .labelLarge
+                                                  .override(
+                                                    fontFamily: 'Ubuntu',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondary,
+                                                    fontSize: 18.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                    shadows: [
+                                                      Shadow(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        offset:
+                                                            Offset(1.0, 1.0),
+                                                        blurRadius: 2.0,
+                                                      )
+                                                    ],
+                                                    lineHeight: 1.5,
+                                                  ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 8.0, 0.0, 0.0),
-                                  child: Text(
-                                    '${widget!.productInfo?.greenScoreRating} ${widget!.productInfo?.greenScore}  environmental impact: ${widget!.productInfo?.sustainabilityScore?.toString()}/10',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelLarge
-                                        .override(
-                                          fontFamily: 'Ubuntu',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondary,
-                                          fontSize: 18.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                          shadows: [
-                                            Shadow(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              offset: Offset(1.0, 1.0),
-                                              blurRadius: 2.0,
-                                            )
-                                          ],
-                                          lineHeight: 1.5,
-                                        ),
-                                  ),
+                                      0.0, 0.0, 4.0, 0.0),
+                                  child: Icon(
+                                    Icons.directions_car,
+                                    color:
+                                        FlutterFlowTheme.of(context).secondary,
+                                    size: 24.0,
+                                  ).animateOnPageLoad(animationsMap[
+                                      'iconOnPageLoadAnimation2']!),
                                 ),
+                                Text(
+                                  'Equal to driving ${widget!.productInfo?.carbonFootprintToCar?.toString()} miles in a petrol car',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodySmall
+                                      .override(
+                                        fontFamily: 'Ubuntu',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        fontSize: 16.0,
+                                        letterSpacing: 0.0,
+                                        fontStyle: FontStyle.italic,
+                                        lineHeight: 1.5,
+                                      ),
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation']!),
                               ],
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 24.0, 0.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 4.0, 0.0),
-                                    child: Icon(
-                                      Icons.directions_car,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 24.0,
-                                    ),
-                                  ),
-                                  Text(
-                                    'Equal to driving ${widget!.productInfo?.carbonFootprintToCar?.toString()} miles in a petrol car',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodySmall
-                                        .override(
-                                          fontFamily: 'Ubuntu',
-                                          fontSize: 16.0,
-                                          letterSpacing: 0.0,
-                                          lineHeight: 1.5,
-                                        ),
-                                  ),
-                                ],
+                        Container(
+                          height: 200.0,
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 10.0, 0.0, 0.0),
+                            child: MarkdownBody(
+                              data: valueOrDefault<String>(
+                                widget!.productInfo?.description,
+                                'Description',
                               ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 10.0, 0.0, 0.0),
-                          child: Text(
-                            valueOrDefault<String>(
-                              widget!.productInfo?.description,
-                              'Description',
+                              selectable: true,
+                              onTapLink: (_, url, __) => launchURL(url!),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Ubuntu',
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  letterSpacing: 0.0,
-                                ),
                           ),
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 24.0, 0.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                              0.0, 6.0, 0.0, 0.0),
+                          child: Wrap(
+                            spacing: 0.0,
+                            runSpacing: 0.0,
+                            alignment: WrapAlignment.start,
+                            crossAxisAlignment: WrapCrossAlignment.start,
+                            direction: Axis.horizontal,
+                            runAlignment: WrapAlignment.start,
+                            verticalDirection: VerticalDirection.down,
+                            clipBehavior: Clip.none,
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 8.0, 0.0),
+                                    0.0, 0.0, 8.0, 8.0),
                                 child: Container(
                                   height: 44.0,
                                   decoration: BoxDecoration(
@@ -363,7 +406,9 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                                   .bodyMedium
                                                   .override(
                                                     fontFamily: 'Ubuntu',
-                                                    color: Color(0xFF81681E),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
                                                     fontSize: 16.0,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w600,
@@ -378,338 +423,303 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 6.0, 0.0, 0.0),
-                                child: Wrap(
-                                  spacing: 0.0,
-                                  runSpacing: 0.0,
-                                  alignment: WrapAlignment.start,
-                                  crossAxisAlignment: WrapCrossAlignment.start,
-                                  direction: Axis.horizontal,
-                                  runAlignment: WrapAlignment.start,
-                                  verticalDirection: VerticalDirection.down,
-                                  clipBehavior: Clip.none,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 8.0, 8.0),
-                                      child: Container(
-                                        height: 44.0,
-                                        decoration: BoxDecoration(
-                                          color: widget!
-                                                  .productInfo!.containsPalmOil
-                                              ? Color(0xFFE68989)
-                                              : Color(0xFF678B4B),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
+                                    0.0, 0.0, 8.0, 8.0),
+                                child: Container(
+                                  height: 44.0,
+                                  decoration: BoxDecoration(
+                                    color: widget!.productInfo!.containsPalmOil
+                                        ? Color(0xFFEA6161)
+                                        : Color(0xFF4BB97A),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 12.0, 24.0, 12.0),
                                         child: Row(
-                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 12.0, 24.0, 12.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    widget!.productInfo!
-                                                            .containsPalmOil
-                                                        ? 'Contains palm oil'
-                                                        : 'Palm oil free',
-                                                    style: FlutterFlowTheme.of(
+                                            Text(
+                                              widget!.productInfo!
+                                                      .containsPalmOil
+                                                  ? 'Contains palm oil'
+                                                  : 'Palm oil free',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Ubuntu',
+                                                    color: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Ubuntu',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
+                                                        .primaryText,
+                                                    fontSize: 16.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
                                                   ),
-                                                ],
-                                              ),
-                                            ),
-                                            Wrap(
-                                              spacing: 0.0,
-                                              runSpacing: 0.0,
-                                              alignment: WrapAlignment.start,
-                                              crossAxisAlignment:
-                                                  WrapCrossAlignment.start,
-                                              direction: Axis.horizontal,
-                                              runAlignment: WrapAlignment.start,
-                                              verticalDirection:
-                                                  VerticalDirection.down,
-                                              clipBehavior: Clip.none,
-                                              children: [],
                                             ),
                                           ],
                                         ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 8.0, 8.0),
-                                      child: Container(
-                                        height: 44.0,
-                                        decoration: BoxDecoration(
-                                          color: widget!
-                                                  .productInfo!.threatensSpecies
-                                              ? Color(0xFFEA6161)
-                                              : Color(0xFF4BB97A),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
+                                      Wrap(
+                                        spacing: 0.0,
+                                        runSpacing: 0.0,
+                                        alignment: WrapAlignment.start,
+                                        crossAxisAlignment:
+                                            WrapCrossAlignment.start,
+                                        direction: Axis.horizontal,
+                                        runAlignment: WrapAlignment.start,
+                                        verticalDirection:
+                                            VerticalDirection.down,
+                                        clipBehavior: Clip.none,
+                                        children: [],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 8.0, 8.0),
+                                child: Container(
+                                  height: 44.0,
+                                  decoration: BoxDecoration(
+                                    color: widget!.productInfo!.threatensSpecies
+                                        ? Color(0xFFEA6161)
+                                        : Color(0xFF4BB97A),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 12.0, 24.0, 12.0),
                                         child: Row(
-                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 12.0, 24.0, 12.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    widget!.productInfo!
-                                                            .threatensSpecies
-                                                        ? 'Threatens endangered species'
-                                                        : 'Does not threaten endangered species',
-                                                    style: FlutterFlowTheme.of(
+                                            Text(
+                                              widget!.productInfo!
+                                                      .threatensSpecies
+                                                  ? 'Threatens endangered species'
+                                                  : 'Does not threaten endangered species',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Ubuntu',
+                                                    color: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Ubuntu',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
+                                                        .primaryText,
+                                                    fontSize: 16.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
                                                   ),
-                                                ],
-                                              ),
-                                            ),
-                                            Wrap(
-                                              spacing: 0.0,
-                                              runSpacing: 0.0,
-                                              alignment: WrapAlignment.start,
-                                              crossAxisAlignment:
-                                                  WrapCrossAlignment.start,
-                                              direction: Axis.horizontal,
-                                              runAlignment: WrapAlignment.start,
-                                              verticalDirection:
-                                                  VerticalDirection.down,
-                                              clipBehavior: Clip.none,
-                                              children: [],
                                             ),
                                           ],
                                         ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 8.0, 8.0),
-                                      child: Container(
-                                        height: 44.0,
-                                        decoration: BoxDecoration(
-                                          color: widget!.productInfo!
-                                                  .responsiblySourced
-                                              ? Color(0xFF4BB97A)
-                                              : Color(0xFFEA6161),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
+                                      Wrap(
+                                        spacing: 0.0,
+                                        runSpacing: 0.0,
+                                        alignment: WrapAlignment.start,
+                                        crossAxisAlignment:
+                                            WrapCrossAlignment.start,
+                                        direction: Axis.horizontal,
+                                        runAlignment: WrapAlignment.start,
+                                        verticalDirection:
+                                            VerticalDirection.down,
+                                        clipBehavior: Clip.none,
+                                        children: [],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 8.0, 8.0),
+                                child: Container(
+                                  height: 44.0,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        widget!.productInfo!.responsiblySourced
+                                            ? Color(0xFF4BB97A)
+                                            : Color(0xFFEA6161),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 12.0, 24.0, 12.0),
                                         child: Row(
-                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 12.0, 24.0, 12.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    widget!.productInfo!
-                                                            .responsiblySourced
-                                                        ? 'Responsibly sourced'
-                                                        : 'Not responsibly sourced',
-                                                    style: FlutterFlowTheme.of(
+                                            Text(
+                                              widget!.productInfo!
+                                                      .responsiblySourced
+                                                  ? 'Responsibly sourced'
+                                                  : 'Not responsibly sourced',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Ubuntu',
+                                                    color: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Ubuntu',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
+                                                        .primaryText,
+                                                    fontSize: 16.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
                                                   ),
-                                                ],
-                                              ),
-                                            ),
-                                            Wrap(
-                                              spacing: 0.0,
-                                              runSpacing: 0.0,
-                                              alignment: WrapAlignment.start,
-                                              crossAxisAlignment:
-                                                  WrapCrossAlignment.start,
-                                              direction: Axis.horizontal,
-                                              runAlignment: WrapAlignment.start,
-                                              verticalDirection:
-                                                  VerticalDirection.down,
-                                              clipBehavior: Clip.none,
-                                              children: [],
                                             ),
                                           ],
                                         ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 8.0, 8.0),
-                                      child: Container(
-                                        height: 44.0,
-                                        decoration: BoxDecoration(
-                                          color: widget!.productInfo!
-                                                  .animalWelfareGood
-                                              ? Color(0xFF4BB97A)
-                                              : Color(0xFFEA6161),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
+                                      Wrap(
+                                        spacing: 0.0,
+                                        runSpacing: 0.0,
+                                        alignment: WrapAlignment.start,
+                                        crossAxisAlignment:
+                                            WrapCrossAlignment.start,
+                                        direction: Axis.horizontal,
+                                        runAlignment: WrapAlignment.start,
+                                        verticalDirection:
+                                            VerticalDirection.down,
+                                        clipBehavior: Clip.none,
+                                        children: [],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 8.0, 8.0),
+                                child: Container(
+                                  height: 44.0,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        widget!.productInfo!.animalWelfareGood
+                                            ? Color(0xFF4BB97A)
+                                            : Color(0xFFEA6161),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 12.0, 24.0, 12.0),
                                         child: Row(
-                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 12.0, 24.0, 12.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    widget!.productInfo!
-                                                            .animalWelfareGood
-                                                        ? 'Meets animal welfare standards'
-                                                        : 'Does not meet animal welfare standards',
-                                                    style: FlutterFlowTheme.of(
+                                            Text(
+                                              widget!.productInfo!
+                                                      .animalWelfareGood
+                                                  ? 'Meets animal welfare standards'
+                                                  : 'Does not meet animal welfare standards',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Ubuntu',
+                                                    color: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Ubuntu',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
+                                                        .primaryText,
+                                                    fontSize: 16.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
                                                   ),
-                                                ],
-                                              ),
-                                            ),
-                                            Wrap(
-                                              spacing: 0.0,
-                                              runSpacing: 0.0,
-                                              alignment: WrapAlignment.start,
-                                              crossAxisAlignment:
-                                                  WrapCrossAlignment.start,
-                                              direction: Axis.horizontal,
-                                              runAlignment: WrapAlignment.start,
-                                              verticalDirection:
-                                                  VerticalDirection.down,
-                                              clipBehavior: Clip.none,
-                                              children: [],
                                             ),
                                           ],
                                         ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 8.0, 8.0),
-                                      child: Container(
-                                        height: 44.0,
-                                        decoration: BoxDecoration(
-                                          color:
+                                      Wrap(
+                                        spacing: 0.0,
+                                        runSpacing: 0.0,
+                                        alignment: WrapAlignment.start,
+                                        crossAxisAlignment:
+                                            WrapCrossAlignment.start,
+                                        direction: Axis.horizontal,
+                                        runAlignment: WrapAlignment.start,
+                                        verticalDirection:
+                                            VerticalDirection.down,
+                                        clipBehavior: Clip.none,
+                                        children: [],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 8.0, 8.0),
+                                child: Container(
+                                  height: 44.0,
+                                  decoration: BoxDecoration(
+                                    color: widget!.productInfo!.noChemicals
+                                        ? Color(0xFF4BB97A)
+                                        : Color(0xFFEA6161),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 12.0, 24.0, 12.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
                                               widget!.productInfo!.noChemicals
-                                                  ? Color(0xFF4BB97A)
-                                                  : Color(0xFFEA6161),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 12.0, 24.0, 12.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    widget!.productInfo!
-                                                            .noChemicals
-                                                        ? 'Contains safe ingredients'
-                                                        : 'Contains harmful chemicals',
-                                                    style: FlutterFlowTheme.of(
+                                                  ? 'Contains safe ingredients'
+                                                  : 'Contains harmful chemicals',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Ubuntu',
+                                                    color: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Ubuntu',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
+                                                        .primaryText,
+                                                    fontSize: 16.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
                                                   ),
-                                                ],
-                                              ),
-                                            ),
-                                            Wrap(
-                                              spacing: 0.0,
-                                              runSpacing: 0.0,
-                                              alignment: WrapAlignment.start,
-                                              crossAxisAlignment:
-                                                  WrapCrossAlignment.start,
-                                              direction: Axis.horizontal,
-                                              runAlignment: WrapAlignment.start,
-                                              verticalDirection:
-                                                  VerticalDirection.down,
-                                              clipBehavior: Clip.none,
-                                              children: [],
                                             ),
                                           ],
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                      Wrap(
+                                        spacing: 0.0,
+                                        runSpacing: 0.0,
+                                        alignment: WrapAlignment.start,
+                                        crossAxisAlignment:
+                                            WrapCrossAlignment.start,
+                                        direction: Axis.horizontal,
+                                        runAlignment: WrapAlignment.start,
+                                        verticalDirection:
+                                            VerticalDirection.down,
+                                        clipBehavior: Clip.none,
+                                        children: [],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],

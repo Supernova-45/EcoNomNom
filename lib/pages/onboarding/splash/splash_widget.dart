@@ -75,7 +75,7 @@ class _SplashWidgetState extends State<SplashWidget>
           child: Stack(
             children: [
               Opacity(
-                opacity: 0.4,
+                opacity: 0.2,
                 child: Align(
                   alignment: AlignmentDirectional(0.0, 0.0),
                   child: ClipRRect(
