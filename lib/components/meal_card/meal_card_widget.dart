@@ -122,6 +122,10 @@ class _MealCardWidgetState extends State<MealCardWidget>
                 }.withoutNulls,
                 extra: <String, dynamic>{
                   'productInfo': widget!.product,
+                  kTransitionInfoKey: TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.bottomToTop,
+                  ),
                 },
               );
             },
@@ -142,7 +146,7 @@ class _MealCardWidgetState extends State<MealCardWidget>
                     ),
                   ).image,
                 ),
-                borderRadius: BorderRadius.circular(24.0),
+                borderRadius: BorderRadius.circular(15.0),
                 border: Border.all(
                   color: FlutterFlowTheme.of(context).alternate,
                   width: 1.0,
@@ -225,10 +229,10 @@ class _MealCardWidgetState extends State<MealCardWidget>
                     Align(
                       alignment: AlignmentDirectional(0.0, 0.0),
                       child: Text(
-                        valueOrDefault<String>(
+                        '${valueOrDefault<String>(
                           widget!.product?.sustainabilityScore?.toString(),
-                          '10',
-                        ),
+                          '5',
+                        )}/10 Sustainability Score',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Ubuntu',
                               color: FlutterFlowTheme.of(context).primary,

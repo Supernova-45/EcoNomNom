@@ -1,10 +1,14 @@
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'splash_model.dart';
@@ -17,10 +21,13 @@ class SplashWidget extends StatefulWidget {
   State<SplashWidget> createState() => _SplashWidgetState();
 }
 
-class _SplashWidgetState extends State<SplashWidget> {
+class _SplashWidgetState extends State<SplashWidget>
+    with TickerProviderStateMixin {
   late SplashModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -28,6 +35,21 @@ class _SplashWidgetState extends State<SplashWidget> {
     _model = createModel(context, () => SplashModel());
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'Splash'});
+    animationsMap.addAll({
+      'imageOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          ScaleEffect(
+            curve: Curves.easeIn,
+            delay: 210.0.ms,
+            duration: 1090.0.ms,
+            begin: Offset(2.0, 2.0),
+            end: Offset(1.0, 1.0),
+          ),
+        ],
+      ),
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -47,17 +69,17 @@ class _SplashWidgetState extends State<SplashWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Color(0xFFBBCFB4),
+        backgroundColor: Color(0x99D6F4CD),
         body: SafeArea(
           top: true,
           child: Stack(
             children: [
               Opacity(
-                opacity: 0.3,
+                opacity: 0.4,
                 child: Align(
                   alignment: AlignmentDirectional(0.0, 0.0),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(0.0),
                     child: Image.asset(
                       'assets/images/economnom_background.png',
                       width: 1558.9,
@@ -81,20 +103,29 @@ class _SplashWidgetState extends State<SplashWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              width: 200.0,
-                              height: 200.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).tertiary,
-                                shape: BoxShape.circle,
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.asset(
-                                  'assets/images/economnom_logo.png',
-                                  width: 212.4,
-                                  height: 259.8,
-                                  fit: BoxFit.contain,
+                            Align(
+                              alignment: AlignmentDirectional(0.0, 0.0),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 100.0, 0.0, 0.0),
+                                child: Container(
+                                  width: 200.0,
+                                  height: 200.0,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.asset(
+                                      'assets/images/economnom_logo.png',
+                                      width: 212.4,
+                                      height: 259.8,
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ).animateOnPageLoad(animationsMap[
+                                      'imageOnPageLoadAnimation']!),
                                 ),
                               ),
                             ),

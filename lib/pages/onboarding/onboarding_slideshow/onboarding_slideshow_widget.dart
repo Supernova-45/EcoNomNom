@@ -76,6 +76,13 @@ class _OnboardingSlideshowWidgetState extends State<OnboardingSlideshowWidget>
             begin: 0.0,
             end: 1.0,
           ),
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 130.0.ms,
+            duration: 600.0.ms,
+            begin: Offset(-71.0, 0.0),
+            end: Offset(0.0, 0.0),
+          ),
         ],
       ),
       'textOnPageLoadAnimation2': AnimationInfo(
@@ -198,6 +205,7 @@ class _OnboardingSlideshowWidgetState extends State<OnboardingSlideshowWidget>
                           child: CustomAppbarWidget(
                             backButton: true,
                             actionButton: false,
+                            optionsButton: false,
                             actionButtonAction: () async {},
                             optionsButtonAction: () async {},
                           ),
@@ -395,7 +403,7 @@ class _OnboardingSlideshowWidgetState extends State<OnboardingSlideshowWidget>
                         onPressed: () async {
                           logFirebaseEvent(
                               'ONBOARDING_SLIDESHOW_CONTINUE_BTN_ON_TAP');
-                          if (_model.pageViewCurrentIndex == 2) {
+                          if (_model.pageViewCurrentIndex == 1) {
                             logFirebaseEvent('Button_haptic_feedback');
                             HapticFeedback.lightImpact();
                             logFirebaseEvent('Button_navigate_to');

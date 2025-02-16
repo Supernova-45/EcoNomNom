@@ -71,12 +71,11 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 10.0),
                       child: Text(
                         'What do you want to eat?',
+                        textAlign: TextAlign.center,
                         style:
                             FlutterFlowTheme.of(context).displaySmall.override(
                                   fontFamily: 'Ubuntu',
-                                  fontSize: 27.0,
                                   letterSpacing: 0.0,
-                                  fontWeight: FontWeight.bold,
                                 ),
                       ),
                     ),
@@ -195,7 +194,8 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
                                     height:
                                         MediaQuery.sizeOf(context).height * 0.9,
                                     decoration: BoxDecoration(
-                                      color: Color(0x33000000),
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
                                       borderRadius: BorderRadius.only(
                                         bottomLeft: Radius.circular(10.0),
                                         bottomRight: Radius.circular(10.0),

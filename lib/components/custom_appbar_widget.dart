@@ -68,7 +68,7 @@ class _CustomAppbarWidgetState extends State<CustomAppbarWidget> {
             borderColor: FlutterFlowTheme.of(context).secondaryBackground,
             borderRadius: 24.0,
             borderWidth: 1.0,
-            buttonSize: 44.0,
+            buttonSize: 58.58,
             fillColor: FlutterFlowTheme.of(context).secondaryBackground,
             icon: Icon(
               Icons.keyboard_arrow_left,
@@ -77,8 +77,9 @@ class _CustomAppbarWidgetState extends State<CustomAppbarWidget> {
             ),
             onPressed: () async {
               logFirebaseEvent('CUSTOM_APPBAR_keyboard_arrow_left_ICN_ON');
-              logFirebaseEvent('IconButton_navigate_back');
-              context.safePop();
+              logFirebaseEvent('IconButton_navigate_to');
+
+              context.pushNamed('Dashboard');
             },
           ),
         Row(

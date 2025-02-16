@@ -58,7 +58,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).background,
         body: SafeArea(
           top: true,
           child: Padding(
@@ -80,8 +80,9 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                         style:
                             FlutterFlowTheme.of(context).displaySmall.override(
                                   fontFamily: 'Ubuntu',
+                                  fontSize: 30.0,
                                   letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.bold,
                                 ),
                       ),
                     ),
@@ -138,8 +139,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                               SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 15.0,
-                            mainAxisSpacing: 10.0,
-                            childAspectRatio: 0.78,
+                            mainAxisSpacing: 15.0,
+                            childAspectRatio: 0.7,
                           ),
                           scrollDirection: Axis.vertical,
                           itemCount: gridViewProductRecordList.length,
@@ -148,22 +149,31 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                 gridViewProductRecordList[gridViewIndex];
                             return Container(
                               width: 100.0,
-                              height: 100.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                              ),
-                              child: wrapWithModel(
-                                model: _model.mealCardModels.getModel(
-                                  gridViewProductRecord.reference.id,
-                                  gridViewIndex,
+                                    .primaryBackground,
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(20.0),
+                                  bottomRight: Radius.circular(20.0),
+                                  topLeft: Radius.circular(20.0),
+                                  topRight: Radius.circular(20.0),
                                 ),
-                                updateCallback: () => safeSetState(() {}),
-                                child: MealCardWidget(
-                                  key: Key(
-                                    'Keylba_${gridViewProductRecord.reference.id}',
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 10.0, 10.0, 0.0),
+                                child: wrapWithModel(
+                                  model: _model.mealCardModels.getModel(
+                                    gridViewProductRecord.reference.id,
+                                    gridViewIndex,
                                   ),
-                                  product: gridViewProductRecord,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: MealCardWidget(
+                                    key: Key(
+                                      'Keylba_${gridViewProductRecord.reference.id}',
+                                    ),
+                                    product: gridViewProductRecord,
+                                  ),
                                 ),
                               ),
                             );
