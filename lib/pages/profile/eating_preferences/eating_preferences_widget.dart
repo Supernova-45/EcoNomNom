@@ -1,4 +1,3 @@
-import '/backend/backend.dart';
 import '/components/custom_appbar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -84,497 +83,347 @@ class _EatingPreferencesWidgetState extends State<EatingPreferencesWidget> {
                           ),
                     ),
                   ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                    child: StreamBuilder<List<CompanyInformationRecord>>(
-                      stream: queryCompanyInformationRecord(
-                        singleRecord: true,
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 25.0,
-                              height: 25.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            0.0, 12.0, 0.0, 12.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Container(
+                              width: 40.0,
+                              height: 40.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context).accent1,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Align(
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Icon(
+                                  Icons.eco,
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  size: 20.0,
                                 ),
                               ),
                             ),
-                          );
-                        }
-                        List<CompanyInformationRecord>
-                            columnCompanyInformationRecordList = snapshot.data!;
-                        // Return an empty Container when the item does not exist.
-                        if (snapshot.data!.isEmpty) {
-                          return Container();
-                        }
-                        final columnCompanyInformationRecord =
-                            columnCompanyInformationRecordList.isNotEmpty
-                                ? columnCompanyInformationRecordList.first
-                                : null;
-
-                        return Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'EATING_PREFERENCES_Container_5vzne7wd_ON');
-                                    logFirebaseEvent('Container_navigate_to');
-
-                                    context.pushNamed(
-                                      'EditPreferences',
-                                      queryParameters: {
-                                        'page': serializeParam(
-                                          0,
-                                          ParamType.int,
-                                        ),
-                                      }.withoutNulls,
-                                    );
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 12.0, 0.0, 12.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Container(
-                                            width: 40.0,
-                                            height: 40.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .accent1,
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Icon(
-                                                Icons.eco,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                size: 20.0,
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    18.0, 0.0, 0.0, 0.0),
-                                            child: Text(
-                                              'Eco-score',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily: 'Ubuntu',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  18.0, 0.0, 0.0, 0.0),
+                              child: Text(
+                                'Eco-score',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: 'Ubuntu',
+                                      letterSpacing: 0.0,
                                     ),
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Don\'t Care',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Ubuntu',
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                    Slider(
-                                      activeColor:
-                                          FlutterFlowTheme.of(context).primary,
-                                      inactiveColor:
-                                          FlutterFlowTheme.of(context)
-                                              .alternate,
-                                      min: 0.0,
-                                      max: 10.0,
-                                      value: _model.sliderValue1 ??= 5.0,
-                                      onChanged: (newValue) {
-                                        newValue = double.parse(
-                                            newValue.toStringAsFixed(2));
-                                        safeSetState(() =>
-                                            _model.sliderValue1 = newValue);
-                                      },
-                                    ),
-                                    Text(
-                                      'Dealbreaker',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Ubuntu',
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                                Divider(
-                                  height: 1.0,
-                                  thickness: 1.0,
-                                  color: FlutterFlowTheme.of(context).accent4,
-                                ),
-                              ],
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'EATING_PREFERENCES_Container_5uwgtvf0_ON');
-                                    logFirebaseEvent('Container_navigate_to');
-
-                                    context.pushNamed(
-                                      'EditPreferences',
-                                      queryParameters: {
-                                        'page': serializeParam(
-                                          1,
-                                          ParamType.int,
-                                        ),
-                                      }.withoutNulls,
-                                    );
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 12.0, 0.0, 12.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Container(
-                                            width: 40.0,
-                                            height: 40.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .accent1,
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Icon(
-                                                Icons.error_outline_sharp,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                size: 20.0,
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    18.0, 0.0, 0.0, 0.0),
-                                            child: Text(
-                                              'Packaging Impact',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily: 'Ubuntu',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Don\'t Care',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Ubuntu',
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                    Slider(
-                                      activeColor:
-                                          FlutterFlowTheme.of(context).primary,
-                                      inactiveColor:
-                                          FlutterFlowTheme.of(context)
-                                              .alternate,
-                                      min: 0.0,
-                                      max: 10.0,
-                                      value: _model.sliderValue2 ??= 5.0,
-                                      onChanged: (newValue) {
-                                        newValue = double.parse(
-                                            newValue.toStringAsFixed(2));
-                                        safeSetState(() =>
-                                            _model.sliderValue2 = newValue);
-                                      },
-                                    ),
-                                    Text(
-                                      'Dealbreaker',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Ubuntu',
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                                Divider(
-                                  height: 1.0,
-                                  thickness: 1.0,
-                                  color: FlutterFlowTheme.of(context).accent4,
-                                ),
-                              ],
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'EATING_PREFERENCES_Container_k93592n4_ON');
-                                    logFirebaseEvent('Container_navigate_to');
-
-                                    context.pushNamed(
-                                      'EditPreferences',
-                                      queryParameters: {
-                                        'page': serializeParam(
-                                          2,
-                                          ParamType.int,
-                                        ),
-                                      }.withoutNulls,
-                                    );
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 12.0, 0.0, 12.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Container(
-                                            width: 40.0,
-                                            height: 40.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .accent1,
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Icon(
-                                                Icons.gpp_good,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                size: 20.0,
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    18.0, 0.0, 0.0, 0.0),
-                                            child: Text(
-                                              'Responsbily Sourced',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily: 'Ubuntu',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Don\'t Care',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Ubuntu',
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                    Slider(
-                                      activeColor:
-                                          FlutterFlowTheme.of(context).primary,
-                                      inactiveColor:
-                                          FlutterFlowTheme.of(context)
-                                              .alternate,
-                                      min: 0.0,
-                                      max: 10.0,
-                                      value: _model.sliderValue3 ??= 5.0,
-                                      onChanged: (newValue) {
-                                        newValue = double.parse(
-                                            newValue.toStringAsFixed(2));
-                                        safeSetState(() =>
-                                            _model.sliderValue3 = newValue);
-                                      },
-                                    ),
-                                    Text(
-                                      'Dealbreaker',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Ubuntu',
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Divider(
-                              height: 1.0,
-                              thickness: 1.0,
-                              color: FlutterFlowTheme.of(context).accent4,
-                            ),
-                            InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                logFirebaseEvent(
-                                    'EATING_PREFERENCES_Container_b2um0xuc_ON');
-                                logFirebaseEvent('Container_navigate_to');
-
-                                context.pushNamed(
-                                  'EditPreferences',
-                                  queryParameters: {
-                                    'page': serializeParam(
-                                      2,
-                                      ParamType.int,
-                                    ),
-                                  }.withoutNulls,
-                                );
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 12.0, 0.0, 12.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Container(
-                                        width: 40.0,
-                                        height: 40.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .accent1,
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Icon(
-                                            Icons.attach_money,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            size: 20.0,
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            18.0, 0.0, 0.0, 0.0),
-                                        child: Text(
-                                          'Sale Price',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyLarge
-                                              .override(
-                                                fontFamily: 'Ubuntu',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
                               ),
                             ),
                           ],
-                        );
-                      },
-                    ),
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Don\'t Care',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Ubuntu',
-                              letterSpacing: 0.0,
-                            ),
+                        ),
                       ),
-                      Slider(
-                        activeColor: FlutterFlowTheme.of(context).primary,
-                        inactiveColor: FlutterFlowTheme.of(context).alternate,
-                        min: 0.0,
-                        max: 10.0,
-                        value: _model.sliderValue4 ??= 5.0,
-                        onChanged: (newValue) {
-                          newValue = double.parse(newValue.toStringAsFixed(2));
-                          safeSetState(() => _model.sliderValue4 = newValue);
-                        },
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Don\'t Care',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Ubuntu',
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                          Slider(
+                            activeColor: FlutterFlowTheme.of(context).primary,
+                            inactiveColor:
+                                FlutterFlowTheme.of(context).alternate,
+                            min: 0.0,
+                            max: 10.0,
+                            value: _model.sliderValue1 ??= 5.0,
+                            onChanged: (newValue) {
+                              newValue =
+                                  double.parse(newValue.toStringAsFixed(2));
+                              safeSetState(
+                                  () => _model.sliderValue1 = newValue);
+                            },
+                          ),
+                          Text(
+                            'Dealbreaker',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Ubuntu',
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        'Dealbreaker',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Ubuntu',
-                              letterSpacing: 0.0,
+                      Divider(
+                        height: 1.0,
+                        thickness: 1.0,
+                        color: FlutterFlowTheme.of(context).accent4,
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 12.0, 0.0, 12.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Container(
+                                  width: 40.0,
+                                  height: 40.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context).accent1,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Align(
+                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    child: Icon(
+                                      Icons.error_outline_sharp,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      size: 20.0,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      18.0, 0.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Packaging Impact',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily: 'Ubuntu',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                              ],
                             ),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Don\'t Care',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Ubuntu',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              Slider(
+                                activeColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                inactiveColor:
+                                    FlutterFlowTheme.of(context).alternate,
+                                min: 0.0,
+                                max: 10.0,
+                                value: _model.sliderValue2 ??= 5.0,
+                                onChanged: (newValue) {
+                                  newValue =
+                                      double.parse(newValue.toStringAsFixed(2));
+                                  safeSetState(
+                                      () => _model.sliderValue2 = newValue);
+                                },
+                              ),
+                              Text(
+                                'Dealbreaker',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Ubuntu',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ],
+                          ),
+                          Divider(
+                            height: 1.0,
+                            thickness: 1.0,
+                            color: FlutterFlowTheme.of(context).accent4,
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 12.0, 0.0, 12.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Container(
+                                      width: 40.0,
+                                      height: 40.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .accent1,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Align(
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Icon(
+                                          Icons.gpp_good,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          size: 20.0,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          18.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Responsbily Sourced',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily: 'Ubuntu',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Don\'t Care',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Ubuntu',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                  Slider(
+                                    activeColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    inactiveColor:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    min: 0.0,
+                                    max: 10.0,
+                                    value: _model.sliderValue3 ??= 5.0,
+                                    onChanged: (newValue) {
+                                      newValue = double.parse(
+                                          newValue.toStringAsFixed(2));
+                                      safeSetState(
+                                          () => _model.sliderValue3 = newValue);
+                                    },
+                                  ),
+                                  Text(
+                                    'Dealbreaker',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Ubuntu',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 12.0, 0.0, 12.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Container(
+                                      width: 40.0,
+                                      height: 40.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .accent1,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Align(
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Icon(
+                                          Icons.gpp_good,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          size: 20.0,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          18.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Price',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily: 'Ubuntu',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Don\'t Care',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Ubuntu',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                  Slider(
+                                    activeColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    inactiveColor:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    min: 0.0,
+                                    max: 10.0,
+                                    value: _model.sliderValue4 ??= 5.0,
+                                    onChanged: (newValue) {
+                                      newValue = double.parse(
+                                          newValue.toStringAsFixed(2));
+                                      safeSetState(
+                                          () => _model.sliderValue4 = newValue);
+                                    },
+                                  ),
+                                  Text(
+                                    'Dealbreaker',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Ubuntu',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ],
                   ),
