@@ -94,6 +94,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                           backButton: true,
                           actionButton: false,
                           optionsButton: false,
+                          switchToDark: true,
                           actionButtonAction: () async {},
                           optionsButtonAction: () async {},
                         ),

@@ -81,6 +81,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       backButton: true,
                       actionButton: true,
                       actionButtonText: 'Save',
+                      optionsButton: false,
+                      switchToDark: true,
                       actionButtonAction: () async {
                         logFirebaseEvent(
                             'EDIT_PROFILE_Container_or1jni5i_CALLBACK');

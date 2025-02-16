@@ -244,7 +244,7 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 8.0, 0.0, 0.0),
                                   child: Text(
-                                    '${widget!.productInfo?.sustainabilityScore?.toString()} environmental impact, grade ${widget!.productInfo?.greenScoreRating}',
+                                    '${widget!.productInfo?.greenScoreRating} ${widget!.productInfo?.greenScore}  environmental impact: ${widget!.productInfo?.sustainabilityScore?.toString()}/10',
                                     style: FlutterFlowTheme.of(context)
                                         .labelLarge
                                         .override(
@@ -259,7 +259,7 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .alternate,
-                                              offset: Offset(2.0, 2.0),
+                                              offset: Offset(1.0, 1.0),
                                               blurRadius: 2.0,
                                             )
                                           ],
@@ -395,7 +395,10 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                       child: Container(
                                         height: 44.0,
                                         decoration: BoxDecoration(
-                                          color: Color(0xFFFFECAA),
+                                          color: widget!
+                                                  .productInfo!.containsPalmOil
+                                              ? Color(0xFFE68989)
+                                              : Color(0xFF678B4B),
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                         ),
@@ -421,8 +424,9 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Ubuntu',
-                                                          color:
-                                                              Color(0xFF81681E),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
                                                           fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -455,7 +459,10 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                       child: Container(
                                         height: 44.0,
                                         decoration: BoxDecoration(
-                                          color: Color(0xFFFFECAA),
+                                          color: widget!
+                                                  .productInfo!.threatensSpecies
+                                              ? Color(0xFFEA6161)
+                                              : Color(0xFF4BB97A),
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                         ),
@@ -481,8 +488,9 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Ubuntu',
-                                                          color:
-                                                              Color(0xFF81681E),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
                                                           fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -515,7 +523,10 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                       child: Container(
                                         height: 44.0,
                                         decoration: BoxDecoration(
-                                          color: Color(0xFFFFECAA),
+                                          color: widget!.productInfo!
+                                                  .responsiblySourced
+                                              ? Color(0xFF4BB97A)
+                                              : Color(0xFFEA6161),
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                         ),
@@ -541,8 +552,9 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Ubuntu',
-                                                          color:
-                                                              Color(0xFF81681E),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
                                                           fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -575,7 +587,10 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                       child: Container(
                                         height: 44.0,
                                         decoration: BoxDecoration(
-                                          color: Color(0xFFFFECAA),
+                                          color: widget!.productInfo!
+                                                  .animalWelfareGood
+                                              ? Color(0xFF4BB97A)
+                                              : Color(0xFFEA6161),
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                         ),
@@ -601,8 +616,9 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Ubuntu',
-                                                          color:
-                                                              Color(0xFF81681E),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
                                                           fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -635,7 +651,10 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                       child: Container(
                                         height: 44.0,
                                         decoration: BoxDecoration(
-                                          color: Color(0xFFFFECAA),
+                                          color:
+                                              widget!.productInfo!.noChemicals
+                                                  ? Color(0xFF4BB97A)
+                                                  : Color(0xFFEA6161),
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                         ),
@@ -654,15 +673,16 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                                                   Text(
                                                     widget!.productInfo!
                                                             .noChemicals
-                                                        ? 'Contains harmful chemicals'
-                                                        : 'Contains safe ingredients',
+                                                        ? 'Contains safe ingredients'
+                                                        : 'Contains harmful chemicals',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Ubuntu',
-                                                          color:
-                                                              Color(0xFF81681E),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
                                                           fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -703,7 +723,7 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.0, -1.0),
+              alignment: AlignmentDirectional(0.0, -1.08),
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(24.0, 50.0, 24.0, 0.0),
                 child: wrapWithModel(
@@ -713,6 +733,7 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget>
                     backButton: true,
                     actionButton: false,
                     optionsButton: true,
+                    switchToDark: true,
                     actionButtonAction: () async {},
                     optionsButtonAction: () async {
                       logFirebaseEvent(

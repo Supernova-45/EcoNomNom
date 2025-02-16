@@ -228,10 +228,10 @@ class _MealCardWidgetState extends State<MealCardWidget>
                           '${valueOrDefault<String>(
                             widget!.product?.greenScoreRating,
                             'B',
-                          )}: (${valueOrDefault<String>(
+                          )} ${valueOrDefault<String>(
                             widget!.product?.sustainabilityScore?.toString(),
                             '5',
-                          )}/10 GreenScore)',
+                          )}/10 GreenScore',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Ubuntu',

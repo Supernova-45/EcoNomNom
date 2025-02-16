@@ -79,7 +79,7 @@ class _SplashWidgetState extends State<SplashWidget>
                 child: Align(
                   alignment: AlignmentDirectional(0.0, 0.0),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(0.0),
+                    borderRadius: BorderRadius.circular(8.0),
                     child: Image.asset(
                       'assets/images/economnom_light_background.png',
                       width: 1558.9,

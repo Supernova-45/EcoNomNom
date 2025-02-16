@@ -132,6 +132,7 @@ class _EditPreferencesWidgetState extends State<EditPreferencesWidget> {
                                 backButton: true,
                                 actionButton: false,
                                 optionsButton: false,
+                                switchToDark: true,
                                 actionButtonAction: () async {},
                                 optionsButtonAction: () async {},
                               ),

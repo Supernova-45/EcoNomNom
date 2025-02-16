@@ -66,6 +66,8 @@ class _SupportCenterWidgetState extends State<SupportCenterWidget> {
                     child: CustomAppbarWidget(
                       backButton: true,
                       actionButton: false,
+                      optionsButton: false,
+                      switchToDark: true,
                       actionButtonAction: () async {},
                       optionsButtonAction: () async {},
                     ),

@@ -67,6 +67,8 @@ class _EatingPreferencesWidgetState extends State<EatingPreferencesWidget> {
                     child: CustomAppbarWidget(
                       backButton: true,
                       actionButton: false,
+                      optionsButton: false,
+                      switchToDark: true,
                       actionButtonAction: () async {},
                       optionsButtonAction: () async {},
                     ),

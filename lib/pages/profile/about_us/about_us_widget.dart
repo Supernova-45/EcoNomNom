@@ -99,6 +99,8 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                               child: CustomAppbarWidget(
                                 backButton: true,
                                 actionButton: false,
+                                optionsButton: false,
+                                switchToDark: true,
                                 actionButtonAction: () async {},
                                 optionsButtonAction: () async {},
                               ),

@@ -8,6 +8,7 @@ import '/flutter_flow/upload_data.dart';
 import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'upload_image_model.dart';
@@ -236,6 +237,8 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
                                   onPressed: () async {
                                     logFirebaseEvent(
                                         'UPLOAD_IMAGE_UPLOAD_PHOTO_BTN_ON_TAP');
+                                    logFirebaseEvent('Button_haptic_feedback');
+                                    HapticFeedback.lightImpact();
                                     logFirebaseEvent(
                                         'Button_upload_media_to_firebase');
                                     final selectedMedia =
@@ -345,6 +348,8 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
                     child: FFButtonWidget(
                       onPressed: () async {
                         logFirebaseEvent('UPLOAD_IMAGE_PAGE_SUBMIT_BTN_ON_TAP');
+                        logFirebaseEvent('Button_haptic_feedback');
+                        HapticFeedback.mediumImpact();
                         logFirebaseEvent('Button_backend_call');
 
                         await ProductRecord.collection

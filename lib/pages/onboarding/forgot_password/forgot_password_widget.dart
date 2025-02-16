@@ -74,6 +74,8 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                           child: CustomAppbarWidget(
                             backButton: true,
                             actionButton: false,
+                            optionsButton: false,
+                            switchToDark: false,
                             actionButtonAction: () async {},
                             optionsButtonAction: () async {},
                           ),
